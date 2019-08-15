@@ -34,6 +34,7 @@
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
+    "pre-commit": "npm run test && lint-staged",
     "pre-push": "npm run test && lint-staged && tsc --build ./tsconfig.json"
   },
   "lint-staged": {
