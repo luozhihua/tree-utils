@@ -3,7 +3,7 @@
     "allowJs": false,
     "lib": [],
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "sourceMap": true,
     "strict": true,
     "pretty": true,

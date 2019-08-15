@@ -10,16 +10,16 @@ describe('Tree utils tests with default data structures.', () => {
   before(() => {
     utils = new TreeUtils<'key', 'children', NodeProps>('key', 'children');
   });
-  
-  after(()=> {
+
+  after(() => {
     utils = null as any;
   });
-    
+
   describe('@hasChildren( node: Node ).', () => {
     it('Should a node that has children must return `true`', () => {
       expect(utils.hasChildren(data[0])).equal(true);
       data[0].children && expect(utils.hasChildren(data[0].children[2])).equal(true);
-      
+
       expect(utils.hasChildren(data[1])).equal(true);
       data[1].children && expect(utils.hasChildren(data[1].children[2])).equal(true);
     });
@@ -28,7 +28,7 @@ describe('Tree utils tests with default data structures.', () => {
       expect(utils.hasChildren(data[3])).equal(false);
       data[0].children && expect(utils.hasChildren(data[0].children[0])).equal(false);
       data[1].children && expect(utils.hasChildren(data[1].children[0])).equal(false);
-      
+
     });
 
     it('Should a node\'s children length is 0 must return `false`', () => {
@@ -40,7 +40,7 @@ describe('Tree utils tests with default data structures.', () => {
     it('Should a node that has children must return `true`', () => {
       expect(utils.isBranch(data[0])).equal(true);
       data[0].children && expect(utils.isBranch(data[0].children[2])).equal(true);
-      
+
       expect(utils.isBranch(data[1])).equal(true);
       data[1].children && expect(utils.isBranch(data[1].children[2])).equal(true);
     });
@@ -48,7 +48,7 @@ describe('Tree utils tests with default data structures.', () => {
     it('Should a node that not has children must return `false`', () => {
       expect(utils.isBranch(data[2])).equal(false);
       data[0].children && expect(utils.isBranch(data[0].children[0])).equal(false);
-      data[1].children && expect(utils.isBranch(data[1].children[0])).equal(false); 
+      data[1].children && expect(utils.isBranch(data[1].children[0])).equal(false);
     });
 
     it('Should a node\'s children length is 0 must return `true`', () => {
