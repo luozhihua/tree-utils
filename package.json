@@ -1,0 +1,64 @@
+{
+  "name": "@colinluo/tree-utils",
+  "version": "1.0.0",
+  "description": "Tree utils.",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "build": "tsc",
+    "test": "nyc mocha --opts ./tests/mocha.opts"
+  },
+  "keywords": [
+    "tree",
+    "utils",
+    "tree-utils",
+    "tree-sort",
+    "tree-walker",
+    "tree-nodes"
+  ],
+  "author": "Colin Luo <mail@luozhihua.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.7.2",
+    "chai": "^4.2.0",
+    "istanbul": "^0.4.5",
+    "lint-staged": "^9.2.1",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1",
+    "source-map-support": "^0.5.13",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3",
+    "yorkie": "^2.0.0"
+  },
+  "gitHooks": {
+    "pre-push": "npm run test && lint-staged && tsc --build ./tsconfig.json"
+  },
+  "lint-staged": {
+    "**/*.ts": [
+      "tslint",
+      "git add"
+    ]
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}

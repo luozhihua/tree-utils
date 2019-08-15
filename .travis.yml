@@ -1,0 +1,38 @@
+os:
+- linux
+language: node_js
+node_js:
+  - stable
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '12'
+
+# 缓存依赖，节省持续集成时间
+cache:
+  npm: true
+  directories:
+    - node_modules
+
+before_install:
+- git config --global user.name "luozhihua"
+- git config --global user.email "mail@luozhihua.com"
+
+install:
+- npm install -g npm
+- npm install
+
+# before_script:
+
+script:
+- npm test
+- npm run build
+
+deploy:
+  provider: npm
+  email: "$PUBLISH_ACCOUNT"
+  api_key: "$PUBLISH_API_KEY"
+  on:
+    tags: true
+

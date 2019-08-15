@@ -1,0 +1,9 @@
+# mocha.opts
+--recursive
+--require ./node_modules/ts-node/register
+# --file tests/setup.ts
+--ui bdd
+--timeout 6000000
+--watch-extensions ts
+--exit
+./tests/spec/**/*.ts
