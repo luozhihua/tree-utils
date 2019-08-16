@@ -1,3 +1,27 @@
+## Classes
+
+<dl>
+<dt><a href="#TreeUtils">TreeUtils</a></dt>
+<dd></dd>
+</dl>
+
+## Functions
+
+<dl>
+<dt><a href="#nodesFinder">nodesFinder(node, parents)</a> ⇒ <code>Boolean</code></dt>
+<dd><p>A function for matching nodes.</p></dd>
+<dt><a href="#nodeSorter">nodeSorter(nodeA, nodeB, parents)</a> ⇒ <code>Boolean</code></dt>
+<dd><p>A function to sort node's children.</p></dd>
+<dt><a href="#nodeMapper">nodeMapper(node, parents)</a> ⇒ <code>TreeNode</code></dt>
+<dd><p>A function to map node.</p></dd>
+<dt><a href="#nodesFinder">nodesFinder(node, parents)</a> ⇒ <code>Boolean</code></dt>
+<dd><p>A function for matching nodes.</p></dd>
+<dt><a href="#nodeSorter">nodeSorter(nodeA, nodeB, parents)</a> ⇒ <code>Boolean</code></dt>
+<dd><p>A function to sort node's children.</p></dd>
+<dt><a href="#nodeMapper">nodeMapper(node, parents)</a> ⇒ <code>TreeNode</code></dt>
+<dd><p>A function to map node.</p></dd>
+</dl>
+
 <a name="TreeUtils"></a>
 
 ## TreeUtils
@@ -150,4 +174,84 @@
 | --- | --- |
 | [keyField] | <code>KeyField</code> | 
 | [childrenField] | <code>ChildrenField</code> | 
+
+<a name="nodesFinder"></a>
+
+## nodesFinder(node, parents) ⇒ <code>Boolean</code>
+<p>A function for matching nodes.</p>
+
+**Kind**: global function  
+**Returns**: <code>Boolean</code> - <p>return true if node is matched, or false if not matched;</p>  
+
+| Param | Type |
+| --- | --- |
+| node | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
+
+<a name="nodeSorter"></a>
+
+## nodeSorter(nodeA, nodeB, parents) ⇒ <code>Boolean</code>
+<p>A function to sort node's children.</p>
+
+**Kind**: global function  
+**Returns**: <code>Boolean</code> - <p>return number [-1, 0, 1] for Array.sort;</p>  
+
+| Param | Type |
+| --- | --- |
+| nodeA | <code>TreeNode</code> | 
+| nodeB | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
+
+<a name="nodeMapper"></a>
+
+## nodeMapper(node, parents) ⇒ <code>TreeNode</code>
+<p>A function to map node.</p>
+
+**Kind**: global function  
+**Returns**: <code>TreeNode</code> - <p>return mapped node;</p>  
+
+| Param | Type |
+| --- | --- |
+| node | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
+
+<a name="nodesFinder"></a>
+
+## nodesFinder(node, parents) ⇒ <code>Boolean</code>
+<p>A function for matching nodes.</p>
+
+**Kind**: global function  
+**Returns**: <code>Boolean</code> - <p>return true if node is matched, or false if not matched;</p>  
+
+| Param | Type |
+| --- | --- |
+| node | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
+
+<a name="nodeSorter"></a>
+
+## nodeSorter(nodeA, nodeB, parents) ⇒ <code>Boolean</code>
+<p>A function to sort node's children.</p>
+
+**Kind**: global function  
+**Returns**: <code>Boolean</code> - <p>return number [-1, 0, 1] for Array.sort;</p>  
+
+| Param | Type |
+| --- | --- |
+| nodeA | <code>TreeNode</code> | 
+| nodeB | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
+
+<a name="nodeMapper"></a>
+
+## nodeMapper(node, parents) ⇒ <code>TreeNode</code>
+<p>A function to map node.</p>
+
+**Kind**: global function  
+**Returns**: <code>TreeNode</code> - <p>return mapped node;</p>  
+
+| Param | Type |
+| --- | --- |
+| node | <code>TreeNode</code> | 
+| parents | <code>Array.&lt;TreeNode&gt;</code> | 
 

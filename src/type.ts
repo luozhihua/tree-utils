@@ -23,7 +23,7 @@ export type TreeNode<
  * @param {TreeNode[]} parents
  * @returns {Boolean} return true if node is matched, or false if not matched;
  */
-function nodesFinder(node, parents): boolean { return true; }
+// function nodesFinder(node, parents): boolean { return true; }
 export type NodesFinder<Node> = (node: Node, parents: Node[]) => boolean;
 
 /**
