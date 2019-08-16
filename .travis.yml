@@ -11,7 +11,7 @@ node_js:
 
 # 缓存依赖，节省持续集成时间
 cache:
-  npm: true
+  npm: false
   directories:
     - node_modules
 
