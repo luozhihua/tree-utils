@@ -11,7 +11,7 @@ node_js:
 
 # 缓存依赖，节省持续集成时间
 cache:
-  npm: false
+  npm: true
   directories:
     - node_modules
 
@@ -35,5 +35,6 @@ deploy:
   email: "$PUBLISH_ACCOUNT"
   api_key: "$PUBLISH_API_KEY"
   on:
+    node_js: stable
     tags: true
 

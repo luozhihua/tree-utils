@@ -16,7 +16,6 @@ npm-debug.log
 tsconfig.json
 tslint.json
 tests
-src
 coverage
 .nyc_output
 .travis.yml
