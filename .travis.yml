@@ -20,7 +20,7 @@ before_install:
 - git config --global user.email "mail@luozhihua.com"
 
 install:
-- npm install -g npm
+- npm install -g npm nyc mocha
 - npm install
 
 # before_script:
