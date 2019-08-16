@@ -5,10 +5,10 @@ import { data, Node, NodeProps, } from '../support/custom-data';
 
 describe('Tree utils tests with Custom data structures.', () => {
 
-  let utils: TreeUtils<'id', 'list', NodeProps>;
+  let utils: TreeUtils<NodeProps, 'id', 'list'>;
 
   before(() => {
-    utils = new TreeUtils<'id', 'list', NodeProps>('id', 'list');
+    utils = new TreeUtils<NodeProps, 'id', 'list'>('id', 'list');
   });
 
   after(() => {

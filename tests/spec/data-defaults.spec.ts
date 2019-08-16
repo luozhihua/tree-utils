@@ -5,10 +5,11 @@ import { data, Node, NodeProps, } from '../support/default-data';
 
 describe('Tree utils tests with default data structures.', () => {
 
-  let utils: TreeUtils<'key', 'children', NodeProps>;
+  let utils: TreeUtils<NodeProps, 'key', 'children'>;
 
   before(() => {
-    utils = new TreeUtils<'key', 'children', NodeProps>('key', 'children');
+    // utils = new TreeUtils<'key', 'children', NodeProps>('key', 'children');
+    utils = new TreeUtils<NodeProps>();
   });
 
   after(() => {

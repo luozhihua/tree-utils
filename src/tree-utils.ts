@@ -1,31 +1,68 @@
-import { TreeNode, NodesFinderPredicate, NodeSorter, NodeMapper, } from './type';
+import { TreeNode, NodesFinder, NodeSorter, NodeMapper, } from './type';
 
-export default class TreeUtils<KeyField extends string = 'key', ChildrenField extends string = 'children', Props = {[k: string]: any}> {
+/**
+ * Class Tree utils
+ *
+ * @export
+ * @class TreeUtils
+ * @template Props
+ * @template KeyField
+ * @template ChildrenField
+ */
+export default class TreeUtils<Props = {[k: string]: any}, KeyField extends string = 'key', ChildrenField extends string = 'children', > {
 
   private keyField: KeyField;
   private childrenField: ChildrenField;
 
+  /**
+   * Creates an instance of TreeUtils.
+   * @param {KeyField} [keyField]
+   * @param {ChildrenField} [childrenField]
+   * @memberof TreeUtils
+   */
   constructor(keyField?: KeyField, childrenField?: ChildrenField) {
-    this.keyField = <KeyField>keyField;
-    this.childrenField = <ChildrenField>childrenField;
+    this.keyField = <KeyField>keyField || <KeyField>'key';
+    this.childrenField = <ChildrenField>childrenField || <ChildrenField>'children';
 
-    // type Node = TreeNode<KeyField, ChildrenField, Props>
+    // type Node = TreeNode<Props, KeyField, ChildrenField>
   }
 
-  hasChildren(nodeData: TreeNode<KeyField, ChildrenField, Props>): boolean {
-    const children = nodeData[this.childrenField];
+  /**
+   * Checks if a node contains children.
+   *
+   * @param {TreeNode} node
+   * @returns {boolean}
+   * @memberof TreeUtils
+   */
+  hasChildren(node: TreeNode<Props, KeyField, ChildrenField>): boolean {
+    const children = node[this.childrenField];
 
     return !!children && children.length > 0;
   }
 
-  isBranch(nodeData: TreeNode<KeyField, ChildrenField, Props>): boolean {
-    const children = nodeData[this.childrenField];
+  /**
+   * Checks if a node has children property (whether the children's length is 0 or not)
+   *
+   * @param {TreeNode} node
+   * @returns {boolean}
+   * @memberof TreeUtils
+   */
+  isBranch(node: TreeNode<Props, KeyField, ChildrenField>): boolean {
+    const children = node[this.childrenField];
 
     return !!children && children.length >= 0;
   }
 
-  getNodeByKey(nodes: TreeNode<KeyField, ChildrenField, Props>[], key: string): TreeNode<KeyField, ChildrenField, Props> | null {
-    let found: TreeNode<KeyField, ChildrenField, Props> | null = null;
+  /**
+   * Get single node with a specific key.
+   *
+   * @param {TreeNode[]} nodes
+   * @param {string} key
+   * @returns {TreeNode | null}
+   * @memberof TreeUtils
+   */
+  getNodeByKey(nodes: TreeNode<Props, KeyField, ChildrenField>[], key: string): TreeNode<Props, KeyField, ChildrenField> | null {
+    let found: TreeNode<Props, KeyField, ChildrenField> | null = null;
     const self = this;
 
     for (const node of nodes) {
@@ -43,12 +80,21 @@ export default class TreeUtils<KeyField extends string = 'key', ChildrenField ex
     return found;
   }
 
+  /**
+   * Find nodes via a custom function.
+   *
+   * @param {TreeNode[]} nodes
+   * @param {NodesFinder<TreeNode>} predicate
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {TreeNode[]}
+   * @memberof TreeUtils
+   */
   findNodes(
-    nodes: TreeNode<KeyField, ChildrenField, Props>[],
-    predicate: NodesFinderPredicate<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props>[] {
-    let found: TreeNode<KeyField, ChildrenField, Props>[] = [];
+    nodes: TreeNode<Props, KeyField, ChildrenField>[],
+    predicate: NodesFinder<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField>[] {
+    let found: TreeNode<Props, KeyField, ChildrenField>[] = [];
 
     for (const node of nodes) {
       if (predicate(node, parents)) {
@@ -64,20 +110,30 @@ export default class TreeUtils<KeyField extends string = 'key', ChildrenField ex
     return found;
   }
 
+  /**
+   * Filter for a single node and its children.
+   *
+   * @param {TreeNode} node
+   * @param {NodesFinder<TreeNode>} predicate
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {(TreeNode | null)}
+   * @memberof TreeUtils
+   */
   filterNode(
-    node: TreeNode<KeyField, ChildrenField, Props>,
-    predicate: NodesFinderPredicate<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props> | null {
-    let res: TreeNode<KeyField, ChildrenField, Props> | null = null;
+    node: TreeNode<Props, KeyField, ChildrenField>,
+    predicate: NodesFinder<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField> | null {
+    let res: TreeNode<Props, KeyField, ChildrenField> | null = null;
+    const filteredChildren = this.isBranch(node)
+      ? node[this.childrenField]
+          .map((childNode) => this.filterNode(childNode, predicate, [...parents, node]))
+          .filter(i => i !== null)
+      : null;
+    const hasChildren = filteredChildren && filteredChildren.length > 0;
+    const isNodeItself = predicate(node, parents);
 
-    const filteredChildren = this.isBranch(node) ? node[this.childrenField].map((childNode) =>
-        this.filterNode(childNode, predicate, [...parents, node])).filter(i => i !== null) : null;
-
-    const hasChildrenMatched = filteredChildren && filteredChildren.length > 0;
-    const isNodeItselfMatched = predicate(node, parents);
-
-    if (isNodeItselfMatched || hasChildrenMatched) {
+    if (isNodeItself || hasChildren) {
       const childrenData = filteredChildren ? { [this.childrenField]: filteredChildren } : {};
       res = Object.assign({}, node, childrenData);
     }
@@ -85,25 +141,43 @@ export default class TreeUtils<KeyField extends string = 'key', ChildrenField ex
     return res;
   }
 
+  /**
+   * Filter the given list of nodes and their children.
+   *
+   * @param {TreeNode[]} nodes
+   * @param {NodesFinder<TreeNode>} predicate
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {TreeNode[]}
+   * @memberof TreeUtils
+   */
   filterNodes(
-    nodes: TreeNode<KeyField, ChildrenField, Props>[],
-    predicate: NodesFinderPredicate<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props>[] {
+    nodes: TreeNode<Props, KeyField, ChildrenField>[],
+    predicate: NodesFinder<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField>[] {
     let result: any = nodes
       .map(node => this.filterNode(node, predicate, parents))
       .filter(i => i !== null);
 
-    return result as TreeNode<KeyField, ChildrenField, Props>[];
+    return result as TreeNode<Props, KeyField, ChildrenField>[];
   }
 
+  /**
+   * Sort children of givin node and return a new node with sorted children.
+   *
+   * @param {TreeNode} node
+   * @param {NodeSorter<TreeNode>} compareFunction
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {TreeNode}
+   * @memberof TreeUtils
+   */
   sortNode(
-    node: TreeNode<KeyField, ChildrenField, Props>,
-    compareFunction: NodeSorter<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props> {
+    node: TreeNode<Props, KeyField, ChildrenField>,
+    compareFunction: NodeSorter<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField> {
     if (this.hasChildren(node)) {
-      const children = ([...node[this.childrenField]] as TreeNode<KeyField, ChildrenField, Props>[])
+      const children = ([...node[this.childrenField]] as TreeNode<Props, KeyField, ChildrenField>[])
         .sort((a, b) => compareFunction(a, b, [...parents, node]))
         .map(childNode => this.sortNode(
           childNode,
@@ -116,22 +190,40 @@ export default class TreeUtils<KeyField extends string = 'key', ChildrenField ex
     return node;
   }
 
+  /**
+   * Sort node list and their children.
+   *
+   * @param {TreeNode[]} nodes
+   * @param {NodeSorter<TreeNode>} compareFunction
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {TreeNode[]}
+   * @memberof TreeUtils
+   */
   sortNodes(
-    nodes: TreeNode<KeyField, ChildrenField, Props>[],
-    compareFunction: NodeSorter<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props>[] {
+    nodes: TreeNode<Props, KeyField, ChildrenField>[],
+    compareFunction: NodeSorter<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField>[] {
     return nodes.sort((a, b) => compareFunction(a, b, parents)).map(
       node => this.sortNode(node, compareFunction, parents));
   }
 
+  /**
+   * Map node
+   *
+   * @param {TreeNode} node
+   * @param {NodeMapper<TreeNode>} mapFunction
+   * @param {TreeNode[]} [parents=[]]
+   * @returns {TreeNode}
+   * @memberof TreeUtils
+   */
   mapNode(
-    node: TreeNode<KeyField, ChildrenField, Props>,
-    mapFunction: NodeMapper<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props> {
+    node: TreeNode<Props, KeyField, ChildrenField>,
+    mapFunction: NodeMapper<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField> {
   // mapNode(node, mapFunction, parents = []) {
-    const mappedNode: TreeNode<KeyField, ChildrenField, Props> = mapFunction({ ...node }, parents);
+    const mappedNode: TreeNode<Props, KeyField, ChildrenField> = mapFunction({ ...node }, parents);
 
     if (this.hasChildren(node)) {
       const children = node[this.childrenField]
@@ -144,10 +236,10 @@ export default class TreeUtils<KeyField extends string = 'key', ChildrenField ex
   }
 
   mapNodes(
-    nodes: TreeNode<KeyField, ChildrenField, Props>[],
-    mapFunction: NodeMapper<TreeNode<KeyField, ChildrenField, Props>>,
-    parents: TreeNode<KeyField, ChildrenField, Props>[] = []
-  ): TreeNode<KeyField, ChildrenField, Props>[] {
+    nodes: TreeNode<Props, KeyField, ChildrenField>[],
+    mapFunction: NodeMapper<TreeNode<Props, KeyField, ChildrenField>>,
+    parents: TreeNode<Props, KeyField, ChildrenField>[] = []
+  ): TreeNode<Props, KeyField, ChildrenField>[] {
     return nodes.map(node => this.mapNode(node, mapFunction, parents));
   }
 

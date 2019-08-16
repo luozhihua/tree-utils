@@ -4,7 +4,7 @@ export interface NodeProps {
   text: string;
 }
 
-export type Node = TreeNode<'id', 'list', NodeProps>;
+export type Node = TreeNode<NodeProps, 'id', 'list'>;
 export const data: Node[] = [
   {
     text: 'foo',
