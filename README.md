@@ -1,4 +1,4 @@
-# Tree utils
+# Tree utils [![Build Status](https://travis-ci.org/luozhihua/tree-utils.svg?branch=master)](https://travis-ci.org/luozhihua/tree-utils)
 
 Tree utils for `Typescript` and `Javascript`;
 
@@ -99,8 +99,8 @@ with custom data structure (`id` as key fieldname and `sublist` as children fiel
 import TreeUtils from '@colin-luo/tree-utils';
 
 innterface NodeProps {
-  key: string;
-  children: NodeProps[];
+  id: string;
+  sublist: NodeProps[];
   text: string;
   avatar: string;
 }
