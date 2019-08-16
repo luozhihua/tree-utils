@@ -23,16 +23,19 @@ export type TreeNode<
  * @param {TreeNode[]} parents
  * @returns {Boolean} return true if node is matched, or false if not matched;
  */
+function nodesFinder(node, parents): boolean { return true; }
 export type NodesFinder<Node> = (node: Node, parents: Node[]) => boolean;
 
 /**
  * A function to sort node's children.
  *
  * @function nodeSorter
- * @param {TreeNode} node
+ * @param {TreeNode} nodeA
+ * @param {TreeNode} nodeB
  * @param {TreeNode[]} parents
  * @returns {Boolean} return number [-1, 0, 1] for Array.sort;
  */
+function nodeSorter(nodeA, nodeB, parents): number { return 0; }
 export type NodeSorter<Node> = (nodeA: Node, nodeB: Node, parents?: Node[]) => number;
 
 /**
@@ -43,4 +46,5 @@ export type NodeSorter<Node> = (nodeA: Node, nodeB: Node, parents?: Node[]) => n
  * @param {TreeNode[]} parents
  * @returns {TreeNode} return mapped node;
  */
+function nodeMapper(node, parents) { }
 export type NodeMapper<Node> = (node: Node, parents?: Node[]) => Node;
