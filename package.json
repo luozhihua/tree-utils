@@ -1,6 +1,6 @@
 {
   "name": "@colin-luo/tree-utils",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "description": "Tree utils.",
   "main": "index.ts",
   "repository": "https://github.com/luozhihua/tree-utils.git",
@@ -8,8 +8,7 @@
     "start": "ts-node ./src/index.ts",
     "build": "tsc",
     "test": "nyc mocha --opts ./tests/mocha.opts",
-    "doc": "jsdoc2md --files ./src/**/*.ts --configure ./jsdoc2md.json > ./documentation.md",
-    "prepublish": "npm run test && npm run build && lint-staged"
+    "doc": "jsdoc2md --files ./src/**/*.ts --configure ./jsdoc2md.json > ./documentation.md"
   },
   "keywords": [
     "tree",
