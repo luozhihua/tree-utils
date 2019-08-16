@@ -6,8 +6,8 @@
 * [TreeUtils](#TreeUtils)
     * [new TreeUtils()](#new_TreeUtils_new)
     * _instance_
-        * [.hasChildren(nodeData)](#TreeUtils+hasChildren) ⇒ <code>boolean</code>
-        * [.isBranch(nodeData)](#TreeUtils+isBranch) ⇒ <code>boolean</code>
+        * [.hasChildren(node)](#TreeUtils+hasChildren) ⇒ <code>boolean</code>
+        * [.isBranch(node)](#TreeUtils+isBranch) ⇒ <code>boolean</code>
         * [.getNodeByKey(nodes, key)](#TreeUtils+getNodeByKey) ⇒ <code>TreeNode</code> \| <code>null</code>
         * [.findNodes(nodes, predicate, [parents])](#TreeUtils+findNodes) ⇒ <code>Array.&lt;TreeNode&gt;</code>
         * [.filterNode(node, predicate, [parents])](#TreeUtils+filterNode) ⇒ <code>TreeNode</code> \| <code>null</code>
@@ -26,25 +26,25 @@
 
 <a name="TreeUtils+hasChildren"></a>
 
-### treeUtils.hasChildren(nodeData) ⇒ <code>boolean</code>
+### treeUtils.hasChildren(node) ⇒ <code>boolean</code>
 <p>Checks if a node contains children.</p>
 
 **Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
 
 | Param | Type |
 | --- | --- |
-| nodeData | <code>TreeNode</code> | 
+| node | <code>TreeNode</code> | 
 
 <a name="TreeUtils+isBranch"></a>
 
-### treeUtils.isBranch(nodeData) ⇒ <code>boolean</code>
+### treeUtils.isBranch(node) ⇒ <code>boolean</code>
 <p>Checks if a node has children property (whether the children's length is 0 or not)</p>
 
 **Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
 
 | Param | Type |
 | --- | --- |
-| nodeData | <code>TreeNode</code> | 
+| node | <code>TreeNode</code> | 
 
 <a name="TreeUtils+getNodeByKey"></a>
 
