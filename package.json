@@ -1,5 +1,5 @@
 {
-  "name": "@colinluo/tree-utils",
+  "name": "@colin-luo/tree-utils",
   "version": "1.0.0",
   "description": "Tree utils.",
   "main": "index.ts",
