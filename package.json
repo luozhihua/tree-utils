@@ -1,6 +1,6 @@
 {
   "name": "@colin-luo/tree-utils",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "Tree utils.",
   "main": "index.ts",
   "scripts": {
@@ -8,7 +8,7 @@
     "build": "tsc",
     "test": "nyc mocha --opts ./tests/mocha.opts",
     "doc": "jsdoc2md --files ./src/**/*.ts --configure ./jsdoc2md.json > ./documentation.md",
-    "prepublish": "npm run test && npm run build && npm run doc"
+    "prepublish": "npm run test && npm run build && npm run doc && lint-staged"
   },
   "keywords": [
     "tree",
@@ -50,7 +50,6 @@
   "lint-staged": {
     "**/*.ts": [
       "tslint",
-      "npm run doc",
       "git add"
     ]
   },
