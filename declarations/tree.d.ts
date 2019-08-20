@@ -20,12 +20,10 @@ export default class Tree<Props = {
     getParent(keyOrNode: string | TreeNode<Props, KeyField, ChildrenField>): TreeNode<Props, KeyField, ChildrenField> | null;
     siblingsAndSelf(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
     siblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
-    prevSibling(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField> | null;
-    nextSibling(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField> | null;
-    nextSiblingAll(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
-    prevSiblingAll(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
-    nextSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
-    prevSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
+    prevSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField> | null;
+    nextSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField> | null;
+    nextSiblingsAll(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
+    prevSiblingsAll(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[];
     indexOf(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string, siblings?: TreeNode<Props, KeyField, ChildrenField>[]): number;
     append(node: TreeNode<Props, KeyField, ChildrenField>, tagart?: TreeNode<Props, KeyField, ChildrenField> | string): void;
     prepend(node: TreeNode<Props, KeyField, ChildrenField>, tagart?: TreeNode<Props, KeyField, ChildrenField> | string): void;

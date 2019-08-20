@@ -278,9 +278,9 @@ function runTests <
 
     describe('@prevSibling( key: string ).', () => {
       it('Should return prevSibling node of given key.', () => {
-        expect(utils.prevSibling('xmoo')).property(KEY, 'xkar');
-        expect(utils.prevSibling('boo')).property(KEY, 'bar');
-        expect(utils.prevSibling('poo')).to.deep.equal(
+        expect(utils.prevSiblings('xmoo')).property(KEY, 'xkar');
+        expect(utils.prevSiblings('boo')).property(KEY, 'bar');
+        expect(utils.prevSiblings('poo')).to.deep.equal(
           {
             [TEXT]: 'boo',
             [KEY]: 'boo',
@@ -289,16 +289,16 @@ function runTests <
       });
 
       it('Should return [] if given key has no prevSibling.', () => {
-        expect(utils.prevSibling('foo')).eq(null);
-        expect(utils.prevSibling('not_exists_key')).eq(null);
+        expect(utils.prevSiblings('foo')).eq(null);
+        expect(utils.prevSiblings('not_exists_key')).eq(null);
       });
     });
 
     describe('@nextSibling( key: string ).', () => {
       it('Should return nextSibling node of given key.', () => {
-        expect(utils.nextSibling('bar')).property(KEY, 'boo');
-        expect(utils.nextSibling('xkar')).property(KEY, 'xmoo');
-        expect(utils.nextSibling('moo')).to.deep.equal(
+        expect(utils.nextSiblings('bar')).property(KEY, 'boo');
+        expect(utils.nextSiblings('xkar')).property(KEY, 'xmoo');
+        expect(utils.nextSiblings('moo')).to.deep.equal(
           {
             [TEXT]: 'koo',
             [KEY]: 'koo',
@@ -307,17 +307,17 @@ function runTests <
       });
 
       it('Should return [] if given key has no nextSibling.', () => {
-        expect(utils.nextSibling('koo')).eq(null);
-        expect(utils.nextSibling('not_exists_key')).eq(null);
+        expect(utils.nextSiblings('koo')).eq(null);
+        expect(utils.nextSiblings('not_exists_key')).eq(null);
       });
     });
 
     describe('@prevSiblingAll( key: string ).', () => {
       it('Should return all prev siblings node of given key.', () => {
-        expect(utils.prevSiblingAll('xfoo3')).length(3);
-        expect(utils.prevSiblingAll('poo')).length(2);
-        expect(utils.prevSiblingAll('xfoo')).length(1);
-        expect(utils.prevSiblingAll('poo')).to.deep.equal([
+        expect(utils.prevSiblingsAll('xfoo3')).length(3);
+        expect(utils.prevSiblingsAll('poo')).length(2);
+        expect(utils.prevSiblingsAll('xfoo')).length(1);
+        expect(utils.prevSiblingsAll('poo')).to.deep.equal([
           {
             [TEXT]: 'bar',
             [KEY]: 'bar',
@@ -330,19 +330,19 @@ function runTests <
       });
 
       it('Should return [] if given key has no prev siblings.', () => {
-        expect(utils.prevSiblingAll('bar')).length(0);
-        expect(utils.prevSiblingAll('kar')).length(0);
-        expect(utils.prevSiblingAll('not_exists_key')).length(0);
+        expect(utils.prevSiblingsAll('bar')).length(0);
+        expect(utils.prevSiblingsAll('kar')).length(0);
+        expect(utils.prevSiblingsAll('not_exists_key')).length(0);
       });
     });
 
     describe('@prevSiblingAll( node: Node ).', () => {
       it('Should return all prev siblings node of given node.', () => {
-        expect(utils.prevSiblingAll(data[3])).length(3);
-        expect(utils.prevSiblingAll(data[2])).length(2);
-        expect(utils.prevSiblingAll(data[0][CHILDREN][2])).length(2);
-        expect(utils.prevSiblingAll(data[1][CHILDREN][2])).length(2);
-        expect(utils.prevSiblingAll(data[0][CHILDREN][2])).to.deep.equal([
+        expect(utils.prevSiblingsAll(data[3])).length(3);
+        expect(utils.prevSiblingsAll(data[2])).length(2);
+        expect(utils.prevSiblingsAll(data[0][CHILDREN][2])).length(2);
+        expect(utils.prevSiblingsAll(data[1][CHILDREN][2])).length(2);
+        expect(utils.prevSiblingsAll(data[0][CHILDREN][2])).to.deep.equal([
           {
             [TEXT]: 'bar',
             [KEY]: 'bar',
@@ -355,15 +355,15 @@ function runTests <
       });
 
       it('Should return [] if given node has no prev siblings.', () => {
-        expect(utils.prevSiblingAll(data[0])).length(0);
-        expect(utils.prevSiblingAll(data[0][CHILDREN][0])).length(0);
+        expect(utils.prevSiblingsAll(data[0])).length(0);
+        expect(utils.prevSiblingsAll(data[0][CHILDREN][0])).length(0);
       });
     });
 
     describe('@nextSiblingAll( key: string ).', () => {
       it('Should return all next siblings node of given key.', () => {
-        expect(utils.nextSiblingAll('kar')).length(2);
-        expect(utils.nextSiblingAll('xfoo')).to.deep.equal([
+        expect(utils.nextSiblingsAll('kar')).length(2);
+        expect(utils.nextSiblingsAll('xfoo')).to.deep.equal([
           {
             [TEXT]: 'xfoo2',
             [KEY]: 'xfoo2',
@@ -377,16 +377,16 @@ function runTests <
       });
 
       it('Should return [] if given key has no next siblings.', () => {
-        expect(utils.nextSiblingAll('koo')).length(0);
-        expect(utils.nextSiblingAll('not_exists_key')).length(0);
+        expect(utils.nextSiblingsAll('koo')).length(0);
+        expect(utils.nextSiblingsAll('not_exists_key')).length(0);
       });
     });
 
     describe('@nextSiblingAll( node: Node ).', () => {
       it('Should return all next siblings node of given node.', () => {
-        expect(utils.nextSiblingAll(data[0][CHILDREN][0])).length(2);
-        expect(utils.nextSiblingAll(data[0][CHILDREN][1])).length(1);
-        expect(utils.nextSiblingAll(data[1])).to.deep.equal([
+        expect(utils.nextSiblingsAll(data[0][CHILDREN][0])).length(2);
+        expect(utils.nextSiblingsAll(data[0][CHILDREN][1])).length(1);
+        expect(utils.nextSiblingsAll(data[1])).to.deep.equal([
           {
             [TEXT]: 'xfoo2',
             [KEY]: 'xfoo2',
@@ -397,7 +397,7 @@ function runTests <
             [CHILDREN]: [],
           },
         ]);
-        expect(utils.nextSiblingAll(data[1][CHILDREN][2][CHILDREN][0])).to.deep.equal([
+        expect(utils.nextSiblingsAll(data[1][CHILDREN][2][CHILDREN][0])).to.deep.equal([
           {
             [TEXT]: 'xmoo',
             [KEY]: 'xmoo',
@@ -416,8 +416,8 @@ function runTests <
       });
 
       it('Should return [] if given node has no next siblings.', () => {
-        expect(utils.nextSiblingAll(data[3])).length(0);
-        expect(utils.nextSiblingAll(data[1][CHILDREN][2][CHILDREN][2])).length(0);
+        expect(utils.nextSiblingsAll(data[3])).length(0);
+        expect(utils.nextSiblingsAll(data[1][CHILDREN][2][CHILDREN][2])).length(0);
       });
     });
 

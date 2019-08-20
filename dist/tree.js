@@ -131,7 +131,7 @@ class Tree {
             return [];
         }
     }
-    prevSibling(nodeOrKey) {
+    prevSiblings(nodeOrKey) {
         const curr = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
         if (curr) {
             let siblingsAndSelf = this.siblingsAndSelf(nodeOrKey);
@@ -148,7 +148,7 @@ class Tree {
             return null;
         }
     }
-    nextSibling(nodeOrKey) {
+    nextSiblings(nodeOrKey) {
         const curr = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
         if (curr) {
             const siblingsAndSelf = this.siblingsAndSelf(curr);
@@ -168,7 +168,7 @@ class Tree {
             return null;
         }
     }
-    nextSiblingAll(nodeOrKey) {
+    nextSiblingsAll(nodeOrKey) {
         const curr = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
         if (curr) {
             let siblingsAndSelf = this.siblingsAndSelf(nodeOrKey);
@@ -179,7 +179,7 @@ class Tree {
             return [];
         }
     }
-    prevSiblingAll(nodeOrKey) {
+    prevSiblingsAll(nodeOrKey) {
         let curr = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
         if (curr) {
             let siblingsAndSelf = this.siblingsAndSelf(nodeOrKey);
@@ -189,12 +189,6 @@ class Tree {
         else {
             return [];
         }
-    }
-    nextSiblings(nodeOrKey) {
-        return this.nextSiblingAll(nodeOrKey);
-    }
-    prevSiblings(nodeOrKey) {
-        return this.prevSiblingAll(nodeOrKey);
     }
     indexOf(nodeOrKey, siblings) {
         let node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
@@ -304,7 +298,7 @@ class Tree {
     levelDown(node) {
         let curr = typeof node === 'string' ? this.getNode(node) : node;
         if (curr) {
-            let prevSibling = this.prevSibling(curr);
+            let prevSibling = this.prevSiblings(curr);
             if (prevSibling) {
                 this.remove(curr);
                 this.append(curr, prevSibling);

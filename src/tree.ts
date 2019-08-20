@@ -326,7 +326,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Checks if a node contains another node as children.
+   * Checks if a node contains another node deeply.
    *
    * @param {string | TreeNode} parent Parent node or key of parent node.
    * @param {string | TreeNode} child Child node or key of child node.
@@ -357,7 +357,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get parent node of given key.
+   * Get parent node by given key.
    *
    * @param {string} key node key.
    * @param {TreeNode[]} [nodes] Tree root nodes or specific nodes.
@@ -384,7 +384,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get siblings node and itself of given key.
+   * Get siblings and itself of given key or node.
    *
    * @param {string} nodeOrKey node ke y.
    * @param {TreeNode[]} [nodes]  Tree root nodes or specific nodes.
@@ -413,7 +413,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get siblings node of given key.
+   * Get siblings of given key or node.
    *
    * @param {TreeNode[]} nodes Tree root nodes or specific nodes.
    * @param {string} nodeOrKey node or key of node.
@@ -438,14 +438,14 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get prev siblings node of given key.
+   * Get node before of given node.
    *
    * @param {string} nodeOrKey node key.
    * @param {TreeNode[]} [nodes] Tree root nodes or specific nodes.
    * @memberof Tree
-   * @returns {TreeNode | null} return prev siblings node of given key or NULL.
+   * @returns {TreeNode | null} return previous siblings node of given key or NULL.
    */
-  prevSibling(
+  prevSiblings(
     nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
   ): TreeNode<Props, KeyField, ChildrenField> | null {
     type Node = TreeNode<Props, KeyField, ChildrenField>;
@@ -469,14 +469,14 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get next siblings node of given key.
+   * Get next node of given node.
    *
-   * @param {string} nodeOrKey node key.
+   * @param {string} nodeOrKey node or key.
    * @param {TreeNode[]} [nodes] Tree root nodes or specific nodes.
    * @memberof Tree
    * @returns {TreeNode | null} return next siblings node of given key or null.
    */
-  nextSibling(
+  nextSiblings(
     nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
   ): TreeNode<Props, KeyField, ChildrenField> | null {
     type Node = TreeNode<Props, KeyField, ChildrenField>;
@@ -503,14 +503,14 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get all next siblings node of given key.
+   * Get all next siblings node of given node or key.
    *
    * @param {string} nodeOrKey node key.
    * @param {TreeNode[]} [nodes] Tree root nodes or specific nodes.
    * @memberof Tree
    * @returns {TreeNode | null} return next siblings node of given key or null.
    */
-  nextSiblingAll(
+  nextSiblingsAll(
     nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
   ): TreeNode<Props, KeyField, ChildrenField>[] {
     type Node = TreeNode<Props, KeyField, ChildrenField>;
@@ -528,13 +528,13 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Get all prev siblings node of given key.
+   * Get all previous siblings of given node.
    * @param {string} nodeOrKey node or key.
    * @param {TreeNode[]} [nodes] Tree root nodes or specific nodes.
    * @memberof Tree
    * @returns {TreeNode | null} return next siblings node of given key or null.
    */
-  prevSiblingAll(
+  prevSiblingsAll(
     nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
   ): TreeNode<Props, KeyField, ChildrenField>[] {
     type Node = TreeNode<Props, KeyField, ChildrenField>;
@@ -552,29 +552,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Alias to nextSiblingAll
-   *
-   * @memberof Tree
-   */
-  nextSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[] {
-    return this.nextSiblingAll(nodeOrKey);
-  }
-
-  /**
-   * <hr/>
-   * Alias to prevSiblingAll
-   *
-   * @memberof Tree
-   */
-  prevSiblings(
-    nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
-  ): TreeNode<Props, KeyField, ChildrenField>[] {
-    return this.prevSiblingAll(nodeOrKey);
-  }
-
-  /**
-   * <hr/>
-   * Get node index of siblings.
+   * Get index of node.
    *
    * @param {TreeNode[]} siblings
    * @param {(TreeNode | string)} nodeOrKey
@@ -602,7 +580,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Append a new node into first of target node.
+   * Append a new node into target node as end.
    *
    * @param {TreeNode} node A new node to append.
    * @param {(TreeNode | string)} [tagart] where for appending to.
@@ -628,7 +606,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Prepend a node into last of target node.
+   * Prepend a node into target node at head.
    *
    * @param {TreeNode} node A new node to prepend.
    * @param {(TreeNode | string)} [tagart] Where to prepend.
@@ -654,7 +632,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Insert a new node before target
+   * Insert a new node before target node
    *
    * @param {TreeNode} node
    * @param {(TreeNode | string)} target
@@ -677,7 +655,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Insert a new node after target
+   * Insert a new node after target node
    *
    * @param {TreeNode} node
    * @param {(TreeNode | string)} target
@@ -702,7 +680,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Move a node before of previous siblings.
+   * Exchange location with the previous node.
    *
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
@@ -726,7 +704,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Move a node after of next siblings.
+   * Exchange location with the next node.
    *
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
@@ -750,7 +728,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Remove a node
+   * Remove the given node
    *
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
@@ -773,7 +751,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Move given node list.
+   * Remove the given nodes.
    *
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
@@ -788,8 +766,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Move a node up to parent\'s siblings behind it parent.
-   *
+   * Move the given node to the back of the parent node as the sibling of the parent node.
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
    */
@@ -810,7 +787,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
 
   /**
    * <hr/>
-   * Move a node down to end of children of previous siblings.
+   * Move the given node down to end of children of previous siblings.
    *
    * @param {(TreeNode | string)} node Node or key.
    * @memberof Tree
@@ -822,7 +799,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
     let curr: Node | null = typeof node === 'string' ? this.getNode(node as string) : node;
 
     if (curr) {
-      let prevSibling = this.prevSibling(curr);
+      let prevSibling = this.prevSiblings(curr);
 
       if (prevSibling) {
         this.remove(curr);

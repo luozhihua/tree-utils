@@ -37,12 +37,10 @@
     * [.getParent(key, [nodes])](#Tree+getParent) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
     * [.siblingsAndSelf(nodeOrKey, [nodes])](#Tree+siblingsAndSelf) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
     * [.siblings(nodes, nodeOrKey)](#Tree+siblings) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
-    * [.prevSibling(nodeOrKey, [nodes])](#Tree+prevSibling) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-    * [.nextSibling(nodeOrKey, [nodes])](#Tree+nextSibling) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-    * [.nextSiblingAll(nodeOrKey, [nodes])](#Tree+nextSiblingAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-    * [.prevSiblingAll(nodeOrKey, [nodes])](#Tree+prevSiblingAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-    * [.nextSiblings()](#Tree+nextSiblings)
-    * [.prevSiblings()](#Tree+prevSiblings)
+    * [.prevSiblings(nodeOrKey, [nodes])](#Tree+prevSiblings) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.nextSiblings(nodeOrKey, [nodes])](#Tree+nextSiblings) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.nextSiblingsAll(nodeOrKey, [nodes])](#Tree+nextSiblingsAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.prevSiblingsAll(nodeOrKey, [nodes])](#Tree+prevSiblingsAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
     * [.indexOf(siblings, nodeOrKey)](#Tree+indexOf) ⇒ <code>number</code>
     * [.append(node, [tagart])](#Tree+append)
     * [.prepend(node, [tagart])](#Tree+prepend)
@@ -284,7 +282,7 @@ Checks if a node contains another node as children.
 
 ### @.containsDeeply(parent, child) ⇒ <code>boolean</code>
 <hr/>
-Checks if a node contains another node as children.
+Checks if a node contains another node deeply.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -297,7 +295,7 @@ Checks if a node contains another node as children.
 
 ### @.getParent(key, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
 <hr/>
-Get parent node of given key.
+Get parent node by given key.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 **Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return parent node of given key.</p>  
@@ -311,7 +309,7 @@ Get parent node of given key.
 
 ### @.siblingsAndSelf(nodeOrKey, [nodes]) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
 <hr/>
-Get siblings node and itself of given key.
+Get siblings and itself of given key or node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 **Returns**: [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) - <p>return siblings node and itself of given node or key.</p>  
@@ -325,7 +323,7 @@ Get siblings node and itself of given key.
 
 ### @.siblings(nodes, nodeOrKey) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
 <hr/>
-Get siblings node of given key.
+Get siblings of given key or node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 **Returns**: [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) - <p>return siblings node of given node or key.</p>  
@@ -335,53 +333,25 @@ Get siblings node of given key.
 | nodes | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 | nodeOrKey | <code>string</code> | <p>node or key of node.</p> |
 
-<a name="Tree+prevSibling"></a>
+<a name="Tree+prevSiblings"></a>
 
-### @.prevSibling(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+### @.prevSiblings(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
 <hr/>
-Get prev siblings node of given key.
+Get node before of given node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
-**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return prev siblings node of given key or NULL.</p>  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return previous siblings node of given key or NULL.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeOrKey | <code>string</code> | <p>node key.</p> |
 | [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="Tree+nextSibling"></a>
+<a name="Tree+nextSiblings"></a>
 
-### @.nextSibling(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+### @.nextSiblings(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
 <hr/>
-Get next siblings node of given key.
-
-**Kind**: instance method of [<code>Tree</code>](#Tree)  
-**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| nodeOrKey | <code>string</code> | <p>node key.</p> |
-| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
-
-<a name="Tree+nextSiblingAll"></a>
-
-### @.nextSiblingAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-<hr/>
-Get all next siblings node of given key.
-
-**Kind**: instance method of [<code>Tree</code>](#Tree)  
-**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| nodeOrKey | <code>string</code> | <p>node key.</p> |
-| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
-
-<a name="Tree+prevSiblingAll"></a>
-
-### @.prevSiblingAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
-<hr/>
-Get all prev siblings node of given key.
+Get next node of given node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 **Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
@@ -391,25 +361,39 @@ Get all prev siblings node of given key.
 | nodeOrKey | <code>string</code> | <p>node or key.</p> |
 | [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="Tree+nextSiblings"></a>
+<a name="Tree+nextSiblingsAll"></a>
 
-### @.nextSiblings()
+### @.nextSiblingsAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
 <hr/>
-Alias to nextSiblingAll
+Get all next siblings node of given node or key.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
-<a name="Tree+prevSiblings"></a>
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
 
-### @.prevSiblings()
+| Param | Type | Description |
+| --- | --- | --- |
+| nodeOrKey | <code>string</code> | <p>node key.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
+
+<a name="Tree+prevSiblingsAll"></a>
+
+### @.prevSiblingsAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
 <hr/>
-Alias to prevSiblingAll
+Get all previous siblings of given node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| nodeOrKey | <code>string</code> | <p>node or key.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
+
 <a name="Tree+indexOf"></a>
 
 ### @.indexOf(siblings, nodeOrKey) ⇒ <code>number</code>
 <hr/>
-Get node index of siblings.
+Get index of node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -422,7 +406,7 @@ Get node index of siblings.
 
 ### @.append(node, [tagart])
 <hr/>
-Append a new node into first of target node.
+Append a new node into target node as end.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -435,7 +419,7 @@ Append a new node into first of target node.
 
 ### @.prepend(node, [tagart])
 <hr/>
-Prepend a node into last of target node.
+Prepend a node into target node at head.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -448,7 +432,7 @@ Prepend a node into last of target node.
 
 ### @.insertBefore(node, target)
 <hr/>
-Insert a new node before target
+Insert a new node before target node
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -461,7 +445,7 @@ Insert a new node before target
 
 ### @.insertAfter(node, target)
 <hr/>
-Insert a new node after target
+Insert a new node after target node
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -474,7 +458,7 @@ Insert a new node after target
 
 ### @.forward(node)
 <hr/>
-Move a node before of previous siblings.
+Exchange location with the previous node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -486,7 +470,7 @@ Move a node before of previous siblings.
 
 ### @.backward(node)
 <hr/>
-Move a node after of next siblings.
+Exchange location with the next node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -498,7 +482,7 @@ Move a node after of next siblings.
 
 ### @.remove(node)
 <hr/>
-Remove a node
+Remove the given node
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -510,7 +494,7 @@ Remove a node
 
 ### @.removeNodes(node)
 <hr/>
-Move given node list.
+Remove the given nodes.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -522,7 +506,7 @@ Move given node list.
 
 ### @.levelUp(node)
 <hr/>
-Move a node up to parent\'s siblings behind it parent.
+Move the given node to the back of the parent node as the sibling of the parent node.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
@@ -534,7 +518,7 @@ Move a node up to parent\'s siblings behind it parent.
 
 ### @.levelDown(node)
 <hr/>
-Move a node down to end of children of previous siblings.
+Move the given node down to end of children of previous siblings.
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 
