@@ -1,2 +1,2 @@
 export { TreeNode } from './type';
-export { default } from './tree-utils';
+export { default } from './tree';
