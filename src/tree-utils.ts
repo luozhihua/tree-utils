@@ -358,7 +358,7 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
   /**
-   * @alias nextSiblingAll
+   * @alias TreeUtils.nextSiblingAll
    */
   nextSiblings(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): TreeNode<Props, KeyField, ChildrenField>[] {
     return this.nextSiblingAll(nodeOrKey);
@@ -388,7 +388,7 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
   /**
-   * @alias prevSiblingAll
+   * @alias TreeUtils.prevSiblingAll
    */
   prevSiblings(
     nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string
@@ -542,6 +542,12 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
 
+  /**
+   * Move a node after of next siblings.
+   *
+   * @param {(TreeNode | string)} node Node or key.
+   * @memberof TreeUtils
+   */
   backward (
     node: TreeNode<Props, KeyField, ChildrenField> | string
   ) {
@@ -559,6 +565,12 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
 
+  /**
+   * Remove a node
+   *
+   * @param {(TreeNode | string)} node Node or key.
+   * @memberof TreeUtils
+   */
   remove(
     node: TreeNode<Props, KeyField, ChildrenField> | string
   ) {
@@ -575,6 +587,12 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
 
+  /**
+   * Move given node list.
+   *
+   * @param {(TreeNode | string)} node Node or key.
+   * @memberof TreeUtils
+   */
   removeNodes(
     nodes: TreeNode<Props, KeyField, ChildrenField>[] | string[],
   ) {
@@ -583,6 +601,12 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     });
   }
 
+  /**
+   * Move a node up to parent\'s siblings behind it parent.
+   *
+   * @param {(TreeNode | string)} node Node or key.
+   * @memberof TreeUtils
+   */
   levelUp(
     node: TreeNode<Props, KeyField, ChildrenField> | string
   ) {
@@ -598,6 +622,12 @@ export default class TreeUtils<Props = {[k: string]: any}, KeyField extends stri
     }
   }
 
+  /**
+   * Move a node down to end of children of previous siblings.
+   *
+   * @param {(TreeNode | string)} node Node or key.
+   * @memberof TreeUtils
+   */
   levelDown(
     node: TreeNode<Props, KeyField, ChildrenField> | string
   ) {
