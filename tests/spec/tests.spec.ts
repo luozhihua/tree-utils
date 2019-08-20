@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import { default as TreeUtils, TreeNode, } from '../../src/index';
+import { default as Tree, TreeNode, } from '../../src/index';
 import { data as data1, NodeProps as np1, } from '../support/default-data';
 import { data as data2, NodeProps as np2, } from '../support/custom-data';
-
 
 function runTests <
   NodeProps,
@@ -16,11 +15,11 @@ function runTests <
   type Node = TreeNode<NodeProps, KeyField, ChildrenField>;
   type Text = keyof NodeProps;
   let TEXT: Text = 'text' as keyof NodeProps;
-  let utils: TreeUtils<NodeProps, KeyField, ChildrenField> = new TreeUtils<NodeProps, KeyField, ChildrenField>(data, KEY, CHILDREN);
+  let utils: Tree<NodeProps, KeyField, ChildrenField> = new Tree<NodeProps, KeyField, ChildrenField>(data, KEY, CHILDREN);
 
   function createTree(text: string = 'new_node') {
     let data = utils.toJSON();
-    let tree = new TreeUtils<NodeProps, KeyField, ChildrenField>(data, KEY, CHILDREN);
+    let tree = new Tree<NodeProps, KeyField, ChildrenField>(data, KEY, CHILDREN);
     let node: TreeNode<NodeProps, KeyField, ChildrenField> = {
       [KEY as KeyField]: text,
       [TEXT as string]: text,

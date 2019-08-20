@@ -1,67 +1,196 @@
 ## Classes
 
 <dl>
-<dt><a href="#TreeUtils">TreeUtils</a></dt>
-<dd></dd>
+<dt><a href="#Tree">Tree</a></dt>
+<dd><p>Class Tree</p></dd>
 </dl>
 
-## Functions
+## Typedefs
 
 <dl>
-<dt><a href="#nextSiblingAll">nextSiblingAll()</a></dt>
-<dd></dd>
-<dt><a href="#prevSiblingAll">prevSiblingAll()</a></dt>
+<dt><a href="#KeyField">KeyField</a> : <code>string</code></dt>
+<dd><p>defaults 'key'</p></dd>
+<dt><a href="#ChildrenField">ChildrenField</a> : <code>string</code></dt>
+<dd><p>defaults 'children'</p></dd>
+<dt><a href="#TreeNode">TreeNode</a> : <code>Object</code></dt>
 <dd></dd>
 </dl>
 
-<a name="TreeUtils"></a>
+<a name="Tree"></a>
 
-## TreeUtils
+## Tree
+<p>Class Tree</p>
+
 **Kind**: global class  
 
-* [TreeUtils](#TreeUtils)
-    * [new TreeUtils()](#new_TreeUtils_new)
-    * _instance_
-        * [.walker(iterator, [nodes], [mode], [breakable])](#TreeUtils+walker)
-        * [.hasChildren(nodeOrKey)](#TreeUtils+hasChildren) ⇒ <code>boolean</code>
-        * [.isBranch(nodeOrKey)](#TreeUtils+isBranch) ⇒ <code>boolean</code>
-        * [.getNode(key)](#TreeUtils+getNode) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.contains(parent, child)](#TreeUtils+contains) ⇒ <code>boolean</code>
-        * [.containsDeeply(parent, child)](#TreeUtils+containsDeeply) ⇒ <code>boolean</code>
-        * [.getParent(key, [nodes])](#TreeUtils+getParent) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.siblingsAndSelf(nodeOrKey, [nodes])](#TreeUtils+siblingsAndSelf) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-        * [.siblings(nodes, nodeOrKey)](#TreeUtils+siblings) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-        * [.prevSibling(nodeOrKey, [nodes])](#TreeUtils+prevSibling) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.nextSibling(nodeOrKey, [nodes])](#TreeUtils+nextSibling) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.nextSiblingAll(nodeOrKey, [nodes])](#TreeUtils+nextSiblingAll) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.prevSiblingAll(nodeOrKey, [nodes])](#TreeUtils+prevSiblingAll) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.indexOf(siblings, nodeOrKey)](#TreeUtils+indexOf) ⇒ <code>number</code>
-        * [.append(node, [tagart])](#TreeUtils+append)
-        * [.prepend(node, [tagart])](#TreeUtils+prepend)
-        * [.insertBefore(node, target)](#TreeUtils+insertBefore)
-        * [.insertAfter(node, target)](#TreeUtils+insertAfter)
-        * [.forward(node)](#TreeUtils+forward)
-        * [.findNodes(nodes, predicate, [parents])](#TreeUtils+findNodes) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-        * [.filterNode(node, predicate, [parents])](#TreeUtils+filterNode) ⇒ <code>TreeNode</code> \| <code>null</code>
-        * [.filterNodes(predicate, [nodes], [parents])](#TreeUtils+filterNodes) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-        * [.sortNode(node, compareFunction, [parents])](#TreeUtils+sortNode) ⇒ <code>TreeNode</code>
-        * [.sortNodes(compareFunction, [nodes], [parents])](#TreeUtils+sortNodes) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-        * [.mapNode(node, mapFunction, [parents])](#TreeUtils+mapNode) ⇒ <code>TreeNode</code>
-    * _static_
-        * [.TreeUtils](#TreeUtils.TreeUtils)
-            * [new TreeUtils([keyField], [childrenField])](#new_TreeUtils.TreeUtils_new)
+* [Tree](#Tree)
+    * [new Tree([nodes], [keyField], [childrenField])](#new_Tree_new)
+    * [.setData(nodes)](#Tree+setData)
+    * [.toJSON()](#Tree+toJSON) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.toString([indent])](#Tree+toString) ⇒ <code>string</code>
+    * [.walker(iterator, [nodes], [mode], [breakable])](#Tree+walker)
+    * [.hasChildren(nodeOrKey)](#Tree+hasChildren) ⇒ <code>boolean</code>
+    * [.isBranch(nodeOrKey)](#Tree+isBranch) ⇒ <code>boolean</code>
+    * [.getNode(key)](#Tree+getNode) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.contains(parent, child)](#Tree+contains) ⇒ <code>boolean</code>
+    * [.containsDeeply(parent, child)](#Tree+containsDeeply) ⇒ <code>boolean</code>
+    * [.getParent(key, [nodes])](#Tree+getParent) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.siblingsAndSelf(nodeOrKey, [nodes])](#Tree+siblingsAndSelf) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.siblings(nodes, nodeOrKey)](#Tree+siblings) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.prevSibling(nodeOrKey, [nodes])](#Tree+prevSibling) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.nextSibling(nodeOrKey, [nodes])](#Tree+nextSibling) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.nextSiblingAll(nodeOrKey, [nodes])](#Tree+nextSiblingAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.prevSiblingAll(nodeOrKey, [nodes])](#Tree+prevSiblingAll) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.nextSiblings()](#Tree+nextSiblings)
+    * [.prevSiblings()](#Tree+prevSiblings)
+    * [.indexOf(siblings, nodeOrKey)](#Tree+indexOf) ⇒ <code>number</code>
+    * [.append(node, [tagart])](#Tree+append)
+    * [.prepend(node, [tagart])](#Tree+prepend)
+    * [.insertBefore(node, target)](#Tree+insertBefore)
+    * [.insertAfter(node, target)](#Tree+insertAfter)
+    * [.forward(node)](#Tree+forward)
+    * [.backward(node)](#Tree+backward)
+    * [.remove(node)](#Tree+remove)
+    * [.removeNodes(node)](#Tree+removeNodes)
+    * [.levelUp(node)](#Tree+levelUp)
+    * [.levelDown(node)](#Tree+levelDown)
+    * [.findNodes(nodes, predicate, [parents])](#Tree+findNodes) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.filterNode(node, predicate, [parents])](#Tree+filterNode) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+    * [.filterNodes(predicate, [nodes], [parents])](#Tree+filterNodes) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.sortNode(node, compareFunction, [parents])](#Tree+sortNode) ⇒ [<code>TreeNode</code>](#TreeNode)
+    * [.sortNodes(compareFunction, [nodes], [parents])](#Tree+sortNodes) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+    * [.mapNode(node, mapFunction, [parents])](#Tree+mapNode) ⇒ [<code>TreeNode</code>](#TreeNode)
 
-<a name="new_TreeUtils_new"></a>
+<a name="new_Tree_new"></a>
 
-### new TreeUtils()
-<p>Class Tree utils</p>
+### new Tree([nodes], [keyField], [childrenField])
+<p>Creates an instance of Tree.</p>
 
-<a name="TreeUtils+walker"></a>
 
-### treeUtils.walker(iterator, [nodes], [mode], [breakable])
-<p>Touch every node in tree.</p>
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [nodes] | <code>Array</code> | <code>[]</code> | <p>tree data.</p> |
+| [keyField] | [<code>KeyField</code>](#KeyField) | <code>&#x27;key&#x27;</code> | <p>Key fieldname of each tree node (value of key should be unique in all tree nodes.)</p> |
+| [childrenField] | [<code>ChildrenField</code>](#ChildrenField) | <code>&#x27;children&#x27;</code> | <p>children field name of tree node.</p> |
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Example** *(Install)*  
+```typescript
+npm install @colin-luo/tree
+```
+**Example** *(Typescript)*  
+
+with default data structure: `{key: '', children: []}`.
+
+```typescript
+import Tree from '@colin-luo/tree';
+
+const data = [
+  {key: 'a', label: 'A', icon: 'a.svg'},
+  {key: 'b', label: 'B', icon: 'b.svg', children: [
+    {key: 'b-a', label: 'B-A', icon: 'b-a.svg'},
+    {key: 'b-b', label: 'B-B', icon: 'b-b.svg'},
+  ]},
+  {key: 'c', label: 'C', icon: 'c.svg', children: []},
+];
+
+const tree = new Tree(data);
+```
+with custom data structure: `{id: '', members: []}`.
+
+```typescript
+import Tree from '@colin-luo/tree';
+
+type KeyField = 'id';
+type ChildrenField = 'members';
+type NodeProps = {
+  label: string;
+  icon: string;
+}
+
+const data = [
+  {id: 'a', label: 'A', icon: 'a.svg'},
+  {id: 'b', label: 'B', icon: 'b.svg', members: [
+    {id: 'b-a', label: 'B-A', icon: 'b-a.svg'},
+    {id: 'b-b', label: 'B-B', icon: 'b-b.svg'},
+  ]},
+  {id: 'c', label: 'C', icon: 'c.svg', members: []},
+];
+
+const tree = new Tree<NodeProps, KeyField, ChildrenField>(data, 'id', 'members');
+```
+**Example** *(Javascript)*  
+
+```typescript
+import Tree from '@colin-luo/tree';
+
+const data = [
+  {key: 'a', label: 'A', icon: 'a.svg'},
+  {key: 'b', label: 'B', icon: 'b.svg', children: [
+    {key: 'b-a', label: 'B-A', icon: 'b-a.svg'},
+    {key: 'b-b', label: 'B-B', icon: 'b-b.svg'},
+  ]},
+  {key: 'c', label: 'C', icon: 'c.svg', children: []},
+];
+
+const tree = new Tree(data);
+const tree2 = new Tree(data, 'key', 'children');
+```
+<a name="Tree+setData"></a>
+
+### @.setData(nodes)
+<hr/>
+set tree nodes.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type |
+| --- | --- |
+| nodes | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | 
+
+**Example** *(Example usage of &#x60;setData&#x60;.)*  
+```javascript
+const treeData = [
+  {key: 'foo', text: 'foo'},
+  {key: 'bar', text: 'bar', children: {
+    {key: 'baz', text: 'baz'},
+  }},
+];
+tree.setData(treeData);
+```
+<a name="Tree+toJSON"></a>
+
+### @.toJSON() ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<p>Get tree as JSON.</p>
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+<a name="Tree+toString"></a>
+
+### @.toString([indent]) ⇒ <code>string</code>
+<hr/>
+Get tree as string.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: <code>string</code> - <p>string</p>  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| [indent] | <code>number</code> | <code>4</code> | 
+
+**Example** *(Typescript)*  
+```javascript
+const treeData: string = tree.toString();
+```
+**Example** *(Javascript use 4 space indents.)*  
+```javascript
+const treeData = tree.toString(4);
+```
+<a name="Tree+walker"></a>
+
+### @.walker(iterator, [nodes], [mode], [breakable])
+<hr/>
+Touch every node in tree.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -70,323 +199,454 @@
 | [mode] | <code>&#x27;depth&#x27;</code> \| <code>&#x27;breadth&#x27;</code> | <code>&#x27;depth&#x27;</code> | <p>Indicates depth-first or breadth-first priority when traversing.</p> |
 | [breakable] | <code>boolean</code> | <code>false</code> | <p>Break traversing when iterator return true;</p> |
 
-<a name="TreeUtils+hasChildren"></a>
+**Example** *(echo nodes)*  
+```javascript
+const iterator = function(node, index, parent, level) {
+ console.log(node)
+};
 
-### treeUtils.hasChildren(nodeOrKey) ⇒ <code>boolean</code>
-<p>Checks if a node contains children.</p>
+tree.walker(iterator, null, 'depth');
+```
+**Example**  
+break when `iterator(...)` return `true`.
+```javascript
+const iterator = function(node, index, parent, level) {
+  if (node.key === 'bar') {
+    return true;
+  }
+};
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+tree.walker(iterator, null, 'depth');
+```
+<a name="Tree+hasChildren"></a>
+
+### @.hasChildren(nodeOrKey) ⇒ <code>boolean</code>
+<hr/>
+Checks if a node contains children.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type |
 | --- | --- |
-| nodeOrKey | <code>TreeNode</code> \| <code>String</code> | 
+| nodeOrKey | [<code>TreeNode</code>](#TreeNode) \| <code>String</code> | 
 
-<a name="TreeUtils+isBranch"></a>
+**Example**  
+```typescript
+tree.hasChildren('nodeKey'); // return true || false
+tree.hasChildren({ key: 'bar' }); // return false
+tree.hasChildren({ key: 'bar', children: [] }); // return false
+tree.hasChildren({ key: 'bar', children: [{ key: '...'}] }); // return true
+```
+<a name="Tree+isBranch"></a>
 
-### treeUtils.isBranch(nodeOrKey) ⇒ <code>boolean</code>
-<p>Checks if a node has children property (whether the children's length is 0 or not)</p>
+### @.isBranch(nodeOrKey) ⇒ <code>boolean</code>
+<hr/>
+Checks if a node has children property (whether the children's length is 0 or not)
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type |
 | --- | --- |
-| nodeOrKey | <code>TreeNode</code> \| <code>String</code> | 
+| nodeOrKey | [<code>TreeNode</code>](#TreeNode) \| <code>String</code> | 
 
-<a name="TreeUtils+getNode"></a>
+**Example**  
+```typescript
+tree.isBranch('nodeKey'); // return true || false
+tree.isBranch({key: '' }); // return false
+tree.isBranch({key: '', children: [] }); // return true
+```
+<a name="Tree+getNode"></a>
 
-### treeUtils.getNode(key) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get single node with a specific key.</p>
+### @.getNode(key) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get single node with a specific key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type |
 | --- | --- |
 | key | <code>string</code> | 
 
-<a name="TreeUtils+contains"></a>
+<a name="Tree+contains"></a>
 
-### treeUtils.contains(parent, child) ⇒ <code>boolean</code>
-<p>Checks if a node contains another node as children.</p>
+### @.contains(parent, child) ⇒ <code>boolean</code>
+<hr/>
+Checks if a node contains another node as children.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| parent | <code>string</code> \| <code>TreeNode</code> | <p>Parent node or key of parent node.</p> |
-| child | <code>string</code> \| <code>TreeNode</code> | <p>Child node or key of child node.</p> |
-
-<a name="TreeUtils+containsDeeply"></a>
-
-### treeUtils.containsDeeply(parent, child) ⇒ <code>boolean</code>
-<p>Checks if a node contains another node as children.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| parent | <code>string</code> \| <code>TreeNode</code> | <p>Parent node or key of parent node.</p> |
-| child | <code>string</code> \| <code>TreeNode</code> | <p>Child node or key of child node.</p> |
+| parent | <code>string</code> \| [<code>TreeNode</code>](#TreeNode) | <p>Parent node or key of parent node.</p> |
+| child | <code>string</code> \| [<code>TreeNode</code>](#TreeNode) | <p>Child node or key of child node.</p> |
 
-<a name="TreeUtils+getParent"></a>
+<a name="Tree+containsDeeply"></a>
 
-### treeUtils.getParent(key, [nodes]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get parent node of given key.</p>
+### @.containsDeeply(parent, child) ⇒ <code>boolean</code>
+<hr/>
+Checks if a node contains another node as children.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>TreeNode</code> \| <code>null</code> - <p>return parent node of given key.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| parent | <code>string</code> \| [<code>TreeNode</code>](#TreeNode) | <p>Parent node or key of parent node.</p> |
+| child | <code>string</code> \| [<code>TreeNode</code>](#TreeNode) | <p>Child node or key of child node.</p> |
+
+<a name="Tree+getParent"></a>
+
+### @.getParent(key, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get parent node of given key.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return parent node of given key.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | key | <code>string</code> | <p>node key.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="TreeUtils+siblingsAndSelf"></a>
+<a name="Tree+siblingsAndSelf"></a>
 
-### treeUtils.siblingsAndSelf(nodeOrKey, [nodes]) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-<p>Get siblings node and itself of given key.</p>
+### @.siblingsAndSelf(nodeOrKey, [nodes]) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<hr/>
+Get siblings node and itself of given key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>Array.&lt;TreeNode&gt;</code> - <p>return siblings node and itself of given node or key.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) - <p>return siblings node and itself of given node or key.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeOrKey | <code>string</code> | <p>node ke y.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="TreeUtils+siblings"></a>
+<a name="Tree+siblings"></a>
 
-### treeUtils.siblings(nodes, nodeOrKey) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-<p>Get siblings node of given key.</p>
+### @.siblings(nodes, nodeOrKey) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<hr/>
+Get siblings node of given key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>Array.&lt;TreeNode&gt;</code> - <p>return siblings node of given node or key.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) - <p>return siblings node of given node or key.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| nodes | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| nodes | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 | nodeOrKey | <code>string</code> | <p>node or key of node.</p> |
 
-<a name="TreeUtils+prevSibling"></a>
+<a name="Tree+prevSibling"></a>
 
-### treeUtils.prevSibling(nodeOrKey, [nodes]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get prev siblings node of given key.</p>
+### @.prevSibling(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get prev siblings node of given key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>TreeNode</code> \| <code>null</code> - <p>return prev siblings node of given key or NULL.</p>  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| nodeOrKey | <code>string</code> | <p>node key.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
-
-<a name="TreeUtils+nextSibling"></a>
-
-### treeUtils.nextSibling(nodeOrKey, [nodes]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get next siblings node of given key.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>TreeNode</code> \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return prev siblings node of given key or NULL.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeOrKey | <code>string</code> | <p>node key.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="TreeUtils+nextSiblingAll"></a>
+<a name="Tree+nextSibling"></a>
 
-### treeUtils.nextSiblingAll(nodeOrKey, [nodes]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get all next siblings node of given key.</p>
+### @.nextSibling(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get next siblings node of given key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>TreeNode</code> \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeOrKey | <code>string</code> | <p>node key.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="TreeUtils+prevSiblingAll"></a>
+<a name="Tree+nextSiblingAll"></a>
 
-### treeUtils.prevSiblingAll(nodeOrKey, [nodes]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Get all prev siblings node of given key.</p>
+### @.nextSiblingAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get all next siblings node of given key.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-**Returns**: <code>TreeNode</code> \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| nodeOrKey | <code>string</code> | <p>node key.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
+
+<a name="Tree+prevSiblingAll"></a>
+
+### @.prevSiblingAll(nodeOrKey, [nodes]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Get all prev siblings node of given key.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+**Returns**: [<code>TreeNode</code>](#TreeNode) \| <code>null</code> - <p>return next siblings node of given key or null.</p>  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | nodeOrKey | <code>string</code> | <p>node or key.</p> |
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <p>Tree root nodes or specific nodes.</p> |
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <p>Tree root nodes or specific nodes.</p> |
 
-<a name="TreeUtils+indexOf"></a>
+<a name="Tree+nextSiblings"></a>
 
-### treeUtils.indexOf(siblings, nodeOrKey) ⇒ <code>number</code>
-<p>Get node index of siblings.</p>
+### @.nextSiblings()
+<hr/>
+Alias to nextSiblingAll
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+<a name="Tree+prevSiblings"></a>
+
+### @.prevSiblings()
+<hr/>
+Alias to prevSiblingAll
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+<a name="Tree+indexOf"></a>
+
+### @.indexOf(siblings, nodeOrKey) ⇒ <code>number</code>
+<hr/>
+Get node index of siblings.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type |
 | --- | --- |
-| siblings | <code>Array.&lt;TreeNode&gt;</code> | 
-| nodeOrKey | <code>TreeNode</code> \| <code>string</code> | 
+| siblings | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | 
+| nodeOrKey | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | 
 
-<a name="TreeUtils+append"></a>
+<a name="Tree+append"></a>
 
-### treeUtils.append(node, [tagart])
-<p>Append a new node into first of target node.</p>
+### @.append(node, [tagart])
+<hr/>
+Append a new node into first of target node.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| node | <code>TreeNode</code> | <p>A new node to append.</p> |
-| [tagart] | <code>TreeNode</code> \| <code>string</code> | <p>where for appending to.</p> |
+| node | [<code>TreeNode</code>](#TreeNode) | <p>A new node to append.</p> |
+| [tagart] | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>where for appending to.</p> |
 
-<a name="TreeUtils+prepend"></a>
+<a name="Tree+prepend"></a>
 
-### treeUtils.prepend(node, [tagart])
-<p>Prepend a node into last of target node.</p>
+### @.prepend(node, [tagart])
+<hr/>
+Prepend a node into last of target node.
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| node | <code>TreeNode</code> | <p>A new node to prepend.</p> |
-| [tagart] | <code>TreeNode</code> \| <code>string</code> | <p>Where to prepend.</p> |
-
-<a name="TreeUtils+insertBefore"></a>
-
-### treeUtils.insertBefore(node, target)
-<p>Insert a new node before target</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type |
-| --- | --- |
-| node | <code>TreeNode</code> | 
-| target | <code>TreeNode</code> \| <code>string</code> | 
-
-<a name="TreeUtils+insertAfter"></a>
-
-### treeUtils.insertAfter(node, target)
-<p>Insert a new node after target</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type |
-| --- | --- |
-| node | <code>TreeNode</code> | 
-| target | <code>TreeNode</code> \| <code>string</code> | 
-
-<a name="TreeUtils+forward"></a>
-
-### treeUtils.forward(node)
-<p>Move a node before of previous siblings.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| node | <code>TreeNode</code> \| <code>string</code> | <p>Node or key.</p> |
+| node | [<code>TreeNode</code>](#TreeNode) | <p>A new node to prepend.</p> |
+| [tagart] | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Where to prepend.</p> |
 
-<a name="TreeUtils+findNodes"></a>
+<a name="Tree+insertBefore"></a>
 
-### treeUtils.findNodes(nodes, predicate, [parents]) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-<p>Find nodes via a custom function.</p>
+### @.insertBefore(node, target)
+<hr/>
+Insert a new node before target
 
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| nodes | <code>Array.&lt;TreeNode&gt;</code> |  | 
-| predicate | <code>NodesFinder.&lt;TreeNode&gt;</code> |  | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils+filterNode"></a>
-
-### treeUtils.filterNode(node, predicate, [parents]) ⇒ <code>TreeNode</code> \| <code>null</code>
-<p>Filter for a single node and its children.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| node | <code>TreeNode</code> |  | 
-| predicate | <code>NodesFinder.&lt;TreeNode&gt;</code> |  | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils+filterNodes"></a>
-
-### treeUtils.filterNodes(predicate, [nodes], [parents]) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-<p>Filter the given list of nodes and their children.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| predicate | <code>NodesFinder.&lt;TreeNode&gt;</code> |  | 
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> | <code>this.nodes</code> | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils+sortNode"></a>
-
-### treeUtils.sortNode(node, compareFunction, [parents]) ⇒ <code>TreeNode</code>
-<p>Sort children of givin node and return a new node with sorted children.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| node | <code>TreeNode</code> |  | 
-| compareFunction | <code>NodeSorter.&lt;TreeNode&gt;</code> |  | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils+sortNodes"></a>
-
-### treeUtils.sortNodes(compareFunction, [nodes], [parents]) ⇒ <code>Array.&lt;TreeNode&gt;</code>
-<p>Sort node list and their children.</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| compareFunction | <code>NodeSorter.&lt;TreeNode&gt;</code> |  | 
-| [nodes] | <code>Array.&lt;TreeNode&gt;</code> |  | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils+mapNode"></a>
-
-### treeUtils.mapNode(node, mapFunction, [parents]) ⇒ <code>TreeNode</code>
-<p>Map node</p>
-
-**Kind**: instance method of [<code>TreeUtils</code>](#TreeUtils)  
-
-| Param | Type | Default |
-| --- | --- | --- |
-| node | <code>TreeNode</code> |  | 
-| mapFunction | <code>NodeMapper.&lt;TreeNode&gt;</code> |  | 
-| [parents] | <code>Array.&lt;TreeNode&gt;</code> | <code>[]</code> | 
-
-<a name="TreeUtils.TreeUtils"></a>
-
-### TreeUtils.TreeUtils
-**Kind**: static class of [<code>TreeUtils</code>](#TreeUtils)  
-<a name="new_TreeUtils.TreeUtils_new"></a>
-
-#### new TreeUtils([keyField], [childrenField])
-<p>Creates an instance of TreeUtils.</p>
-
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
 
 | Param | Type |
 | --- | --- |
-| [keyField] | <code>KeyField</code> | 
-| [childrenField] | <code>ChildrenField</code> | 
+| node | [<code>TreeNode</code>](#TreeNode) | 
+| target | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | 
 
-<a name="nextSiblingAll"></a>
+<a name="Tree+insertAfter"></a>
 
-## nextSiblingAll()
-**Kind**: global function  
-<a name="prevSiblingAll"></a>
+### @.insertAfter(node, target)
+<hr/>
+Insert a new node after target
 
-## prevSiblingAll()
-**Kind**: global function  
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type |
+| --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) | 
+| target | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | 
+
+<a name="Tree+forward"></a>
+
+### @.forward(node)
+<hr/>
+Move a node before of previous siblings.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+backward"></a>
+
+### @.backward(node)
+<hr/>
+Move a node after of next siblings.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+remove"></a>
+
+### @.remove(node)
+<hr/>
+Remove a node
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+removeNodes"></a>
+
+### @.removeNodes(node)
+<hr/>
+Move given node list.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+levelUp"></a>
+
+### @.levelUp(node)
+<hr/>
+Move a node up to parent\'s siblings behind it parent.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+levelDown"></a>
+
+### @.levelDown(node)
+<hr/>
+Move a node down to end of children of previous siblings.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | <p>Node or key.</p> |
+
+<a name="Tree+findNodes"></a>
+
+### @.findNodes(nodes, predicate, [parents]) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<hr/>
+Find nodes via a custom function.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| nodes | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| predicate | [<code>NodesFinder.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="Tree+filterNode"></a>
+
+### @.filterNode(node, predicate, [parents]) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
+<hr/>
+Filter for a single node and its children.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) |  | 
+| predicate | [<code>NodesFinder.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="Tree+filterNodes"></a>
+
+### @.filterNodes(predicate, [nodes], [parents]) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<hr/>
+Filter the given list of nodes and their children.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| predicate | [<code>NodesFinder.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>this.nodes</code> | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="Tree+sortNode"></a>
+
+### @.sortNode(node, compareFunction, [parents]) ⇒ [<code>TreeNode</code>](#TreeNode)
+<hr/>
+Sort children of givin node and return a new node with sorted children.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) |  | 
+| compareFunction | [<code>NodeSorter.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="Tree+sortNodes"></a>
+
+### @.sortNodes(compareFunction, [nodes], [parents]) ⇒ [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode)
+<hr/>
+Sort node list and their children.
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| compareFunction | [<code>NodeSorter.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [nodes] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="Tree+mapNode"></a>
+
+### @.mapNode(node, mapFunction, [parents]) ⇒ [<code>TreeNode</code>](#TreeNode)
+<hr/>
+Map node
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type | Default |
+| --- | --- | --- |
+| node | [<code>TreeNode</code>](#TreeNode) |  | 
+| mapFunction | [<code>NodeMapper.&lt;TreeNode&gt;</code>](#TreeNode) |  | 
+| [parents] | [<code>Array.&lt;TreeNode&gt;</code>](#TreeNode) | <code>[]</code> | 
+
+<a name="KeyField"></a>
+
+## KeyField : <code>string</code>
+<p>defaults 'key'</p>
+
+**Kind**: global typedef  
+<a name="ChildrenField"></a>
+
+## ChildrenField : <code>string</code>
+<p>defaults 'children'</p>
+
+**Kind**: global typedef  
+<a name="TreeNode"></a>
+
+## TreeNode : <code>Object</code>
+**Kind**: global typedef  
+**Properties**
+
+| Name | Type |
+| --- | --- |
+| key | [<code>KeyField</code>](#KeyField) | 
+| children | [<code>ChildrenField</code>](#ChildrenField) | 
+| others | <code>Any</code> | 
+

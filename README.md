@@ -1,11 +1,11 @@
-# Tree utils [![Build Status](https://travis-ci.org/luozhihua/tree-utils.svg?branch=master)](https://travis-ci.org/luozhihua/tree-utils)
+# Tree utils [![Build Status](https://travis-ci.org/luozhihua/tree.svg?branch=master)](https://travis-ci.org/luozhihua/tree)
 
 Tree utils for `Typescript` and `Javascript`;
 
 ## Install
 
 ```bash
-npm install @colin-luo/tree-utils
+npm install @colin-luo/tree
 ```
 
 ## Examples
@@ -15,7 +15,7 @@ npm install @colin-luo/tree-utils
 with default data structure (has `key` and `children` properties).
 
 ```Javascript
-import TreeUtils from '@colin-luo/tree-utils';
+import Tree from '@colin-luo/tree';
 
 const data = [
   {key: 'a', label: 'A', icon: 'a.svg'},
@@ -26,7 +26,7 @@ const data = [
   {key: 'c', label: 'C', icon: 'c.svg', children: []},
 ];
 
-const tree2 = new TreeUtils();
+const tree2 = new Tree();
 
 tree.hasChildren(data[0]) // => false
 tree.hasChildren(data[1]) // => true
@@ -40,7 +40,7 @@ tree2.hasChildren(data[2]) // => false
 with custom data structure (`id` as key fieldname and `sublist` as children fieldname)
 
 ```Javascript
-import TreeUtils from '@colin-luo/tree-utils';
+import Tree from '@colin-luo/tree';
 
 const data = [
   {id: 'a', label: 'A', icon: 'a.svg'},
@@ -51,7 +51,7 @@ const data = [
   {id: 'c', label: 'C', icon: 'c.svg', sublist: []},
 ];
 
-const tree = new TreeUtils('id', 'sublist');
+const tree = new Tree('id', 'sublist');
 
 tree.hasChildren(data[0]) // => false
 tree.hasChildren(data[1]) // => true
@@ -63,7 +63,7 @@ tree.hasChildren(data[2]) // => false
 with default data structure (has `key` and `children` properties).
 
 ```typescript
-import TreeUtils from '@colin-luo/tree-utils';
+import Tree from '@colin-luo/tree';
 
 innterface NodeProps {
   key: string;
@@ -81,8 +81,8 @@ const data = [
   {key: 'c', label: 'C', icon: 'c.svg', children: []},
 ];
 
-const tree = new TreeUtils<'key', 'children', NodeProps>('key', 'children');
-const tree2 = new TreeUtils<NodeProps>();
+const tree = new Tree<'key', 'children', NodeProps>('key', 'children');
+const tree2 = new Tree<NodeProps>();
 
 tree.hasChildren(data[0]) // => false
 tree.hasChildren(data[1]) // => true
@@ -96,7 +96,7 @@ tree2.hasChildren(data[2]) // => false
 with custom data structure (`id` as key fieldname and `sublist` as children fieldname)
 
 ```typescript
-import TreeUtils from '@colin-luo/tree-utils';
+import Tree from '@colin-luo/tree';
 
 innterface NodeProps {
   id: string;
@@ -114,7 +114,7 @@ const data = [
   {id: 'c', text: 'C', avatar: 'c.svg', sublist: []},
 ];
 
-const tree = new TreeUtils<'id', 'sublist', NodeProps>('id', 'sublist');
+const tree = new Tree<'id', 'sublist', NodeProps>('id', 'sublist');
 
 tree.hasChildren(data[0]) // => false
 tree.hasChildren(data[1]) // => true
