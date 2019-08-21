@@ -920,7 +920,6 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
         ));
       return { ...node, [this.childrenField]: children };
     }
-
     return node;
   }
 
@@ -959,16 +958,16 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
     mapFunction: NodeMapper<TreeNode<Props, KeyField, ChildrenField>>,
     parents: TreeNode<Props, KeyField, ChildrenField>[] = []
   ): TreeNode<Props, KeyField, ChildrenField> {
-  // mapNode(node, mapFunction, parents = []) {
-    const mappedNode: TreeNode<Props, KeyField, ChildrenField> = mapFunction({ ...node }, parents);
+    type Node = TreeNode<Props, KeyField, ChildrenField>;
+    const mappedNode: Node = mapFunction({ ...node }, parents);
 
     if (this.hasChildren(node)) {
-      const children = node[this.childrenField]
-        .map(n => this.mapNode(n, mapFunction, [...parents, mappedNode]));
+      const children = node[this.childrenField].map(
+        n => this.mapNode(n, mapFunction, [...parents, mappedNode])
+      );
 
       mappedNode[this.childrenField] = children as any;
     }
-
     return mappedNode;
   }
 
