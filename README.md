@@ -1,4 +1,4 @@
-# Tree utils [![Build Status](https://travis-ci.org/luozhihua/tree.svg?branch=master)](https://travis-ci.org/luozhihua/tree)
+# Tree utils [![Build Status](https://travis-ci.org/luozhihua/tree-utils.svg?branch=master)](https://travis-ci.org/luozhihua/tree-utils)
 
 Tree utils for `Typescript` and `Javascript`;
 
