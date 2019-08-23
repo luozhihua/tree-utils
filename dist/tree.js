@@ -130,7 +130,7 @@ class Tree {
         let subNode = typeof keyOrNode === 'string' ? this.getNode(keyOrNode) : keyOrNode;
         let parent = null;
         let KEY = this.keyField;
-        let iterator = (node, index, p, level) => {
+        let iterator = (node, index, p) => {
             if (subNode && node[KEY] === subNode[KEY]) {
                 parent = p || null;
                 return true;
