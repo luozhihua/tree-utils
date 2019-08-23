@@ -1,9 +1,8 @@
 {
   "name": "@colin-luo/tree",
-  "version": "4.2.2",
+  "version": "4.2.3",
   "description": "Tree utils.",
   "main": "dist/index.js",
-  "module": "src/index.ts",
   "types": "./declarations",
   "repository": "https://github.com/luozhihua/tree-utils.git",
   "scripts": {
