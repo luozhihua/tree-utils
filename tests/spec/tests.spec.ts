@@ -116,6 +116,82 @@ function runTests <
       });
     });
 
+    describe('@isFirstChild(key: string).', () => {
+      it('Should return true if the node of given key is first child.', () => {
+        expect(utils.isFirstChild('foo')).eq(true);
+        expect(utils.isFirstChild('bar')).eq(true);
+        expect(utils.isFirstChild('kar')).eq(true);
+      });
+
+      it('Should return false if the node of given key is not first child.', () => {
+        expect(utils.isFirstChild('xfoo')).equal(false);
+        expect(utils.isFirstChild('boo')).equal(false);
+        expect(utils.isFirstChild('koo')).equal(false);
+      });
+
+      it('Should return false if the node of given key is not exists.', () => {
+        expect(utils.isFirstChild('not_exists_key')).equal(false);
+      });
+    });
+
+    describe('@isFirstChild(node: Node).', () => {
+      it('Should return true if the node of given key is first child.', () => {
+        expect(utils.isFirstChild(data[0])).eq(true);
+        expect(utils.isFirstChild(data[0][CHILDREN][0])).eq(true);
+        expect(utils.isFirstChild(data[0][CHILDREN][2][CHILDREN][0])).eq(true);
+        expect(utils.isFirstChild(data[1][CHILDREN][0])).eq(true);
+      });
+
+      it('Should return false if the node of given key is not first child.', () => {
+        expect(utils.isFirstChild(data[1])).eq(false);
+        expect(utils.isFirstChild(data[0][CHILDREN][1])).eq(false);
+        expect(utils.isFirstChild(data[0][CHILDREN][2][CHILDREN][2])).eq(false);
+        expect(utils.isFirstChild(data[1][CHILDREN][2])).eq(false);
+      });
+
+      it('Should return false if the node of given key is not exists.', () => {
+        expect(utils.isFirstChild(data[5])).equal(false);
+      });
+    });
+
+    describe('@isLastChild(key: string).', () => {
+      it('Should return true if the node of given key is last child.', () => {
+        expect(utils.isLastChild('poo')).eq(true);
+        expect(utils.isLastChild('koo')).eq(true);
+        expect(utils.isLastChild('dar sar')).eq(true);
+      });
+
+      it('Should return false if the node of given key is not last child.', () => {
+        expect(utils.isLastChild('xfoo')).equal(false);
+        expect(utils.isLastChild('boo')).equal(false);
+        expect(utils.isLastChild('boo')).equal(false);
+      });
+
+      it('Should return false if the node of given key is not exists.', () => {
+        expect(utils.isLastChild('not_exists_key')).equal(false);
+      });
+    });
+
+    describe('@isLastChild(node: Node).', () => {
+      it('Should return true if the node of given key is last child.', () => {
+        expect(utils.isLastChild(data[3])).eq(true);
+        expect(utils.isLastChild(data[0][CHILDREN][2])).eq(true);
+        expect(utils.isLastChild(data[0][CHILDREN][2][CHILDREN][2])).eq(true);
+        expect(utils.isLastChild(data[1][CHILDREN][2])).eq(true);
+      });
+
+      it('Should return false if the node of given key is not last child.', () => {
+        expect(utils.isLastChild(data[1])).eq(false);
+        expect(utils.isLastChild(data[0][CHILDREN][1])).eq(false);
+        expect(utils.isLastChild(data[0][CHILDREN][2][CHILDREN][1])).eq(false);
+        expect(utils.isLastChild(data[1][CHILDREN][1])).eq(false);
+      });
+
+      it('Should return false if the node of given key is not exists.', () => {
+        expect(utils.isLastChild(data[5])).equal(false);
+      });
+    });
+
     describe('@getParent(key: string).', () => {
       it('Should return parent node of given key.', () => {
         expect(utils.getParent('bar')).property('text', 'foo');

@@ -357,8 +357,7 @@ class Tree {
     mapNode(node, mapFunction, parents = []) {
         const mappedNode = mapFunction({ ...node }, parents);
         if (this.hasChildren(node)) {
-            const children = node[this.childrenField]
-                .map(n => this.mapNode(n, mapFunction, [...parents, mappedNode]));
+            const children = node[this.childrenField].map(n => this.mapNode(n, mapFunction, [...parents, mappedNode]));
             mappedNode[this.childrenField] = children;
         }
         return mappedNode;

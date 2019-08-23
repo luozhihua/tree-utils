@@ -282,6 +282,38 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
   }
 
   /**
+   * Checks if given node is the first child.
+   *
+   * @param {(TreeNode | string)} nodeOrKey
+   * @returns {boolean}
+   * @memberof Tree
+   */
+  isFirstChild(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean {
+    const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey as string) : nodeOrKey;
+    if (node) {
+      const siblings = this.siblingsAndSelf(node);
+      return siblings[0][this.keyField] === node[this.keyField];
+    }
+    return false;
+  }
+
+  /**
+   * Checks if given node is the last child.
+   *
+   * @param {(TreeNode | string)} nodeOrKey
+   * @returns {boolean}
+   * @memberof Tree
+   */
+  isLastChild(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean {
+    const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey as string) : nodeOrKey;
+    if (node) {
+      const siblings = this.siblingsAndSelf(node);
+      return siblings[siblings.length - 1][this.keyField] === node[this.keyField];
+    }
+    return false;
+  }
+
+  /**
    * <hr/>
    * Get single node with a specific key.
    *
