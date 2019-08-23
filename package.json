@@ -1,6 +1,6 @@
 {
   "name": "@colin-luo/tree",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "Tree utils.",
   "main": "dist/index.js",
   "module": "src/index.ts",

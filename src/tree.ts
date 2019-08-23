@@ -425,12 +425,12 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
     let subNode: Node | null = typeof keyOrNode === 'string' ? this.getNode(keyOrNode as string) : keyOrNode;
     let parent: Node | null = null;
     let KEY = this.keyField;
-    let iterator = (node, index, p, level) => {
+    let iterator = (node, index, p) => {
       if (subNode && node[KEY] === subNode[KEY]) {
         parent = p || null;
         return true;
       }
-    }
+    };
     this.walker(iterator, null, 'breadth', true);
 
     return parent;
@@ -459,7 +459,7 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
       if (curr && node[this.keyField] === curr[this.keyField]) {
         siblings = parent ? parent[this.childrenField] : this.nodes;
       }
-    }
+    };
     this.walker(iterator, this.nodes, 'depth', true);
 
     return siblings;
