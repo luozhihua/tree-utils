@@ -61,6 +61,20 @@ class Tree {
         const children = node[this.childrenField];
         return !!children && children.length >= 0;
     }
+    isRoot(nodeOrKey) {
+        const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
+        if (node) {
+            let result = false;
+            this.walker((item, index, parent, level) => {
+                if (item[this.keyField] === node[this.keyField]) {
+                    result = level === 0;
+                    return true;
+                }
+            }, null, 'breadth', true);
+            return result;
+        }
+        return false;
+    }
     isFirstChild(nodeOrKey) {
         const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
         if (node) {

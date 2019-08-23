@@ -14,6 +14,7 @@ export default class Tree<Props = {
     walker(iterator: (node: TreeNode<Props, KeyField, ChildrenField>, index: number, parent: TreeNode<Props, KeyField, ChildrenField> | undefined, level: number) => boolean | void, nodes?: TreeNode<Props, KeyField, ChildrenField>[] | null, mode?: 'depth' | 'breadth', breakable?: boolean, __parent?: TreeNode<Props, KeyField, ChildrenField>, __level?: number): boolean | undefined;
     hasChildren(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean;
     isBranch(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean;
+    isRoot(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean;
     isFirstChild(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean;
     isLastChild(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean;
     getNode(key: string): TreeNode<Props, KeyField, ChildrenField> | null;
