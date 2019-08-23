@@ -31,6 +31,7 @@
     * [.walker(iterator, [nodes], [mode], [breakable])](#Tree+walker)
     * [.hasChildren(nodeOrKey)](#Tree+hasChildren) ⇒ <code>boolean</code>
     * [.isBranch(nodeOrKey)](#Tree+isBranch) ⇒ <code>boolean</code>
+    * [.isRoot(nodeOrKey)](#Tree+isRoot) ⇒ <code>boolean</code>
     * [.isFirstChild(nodeOrKey)](#Tree+isFirstChild) ⇒ <code>boolean</code>
     * [.isLastChild(nodeOrKey)](#Tree+isLastChild) ⇒ <code>boolean</code>
     * [.getNode(key)](#Tree+getNode) ⇒ [<code>TreeNode</code>](#TreeNode) \| <code>null</code>
@@ -255,6 +256,17 @@ tree.isBranch('nodeKey'); // return true || false
 tree.isBranch({key: '' }); // return false
 tree.isBranch({key: '', children: [] }); // return true
 ```
+<a name="Tree+isRoot"></a>
+
+### @.isRoot(nodeOrKey) ⇒ <code>boolean</code>
+<p>Checks if given node is the root.</p>
+
+**Kind**: instance method of [<code>Tree</code>](#Tree)  
+
+| Param | Type |
+| --- | --- |
+| nodeOrKey | [<code>TreeNode</code>](#TreeNode) \| <code>string</code> | 
+
 <a name="Tree+isFirstChild"></a>
 
 ### @.isFirstChild(nodeOrKey) ⇒ <code>boolean</code>
@@ -269,7 +281,7 @@ tree.isBranch({key: '', children: [] }); // return true
 <a name="Tree+isLastChild"></a>
 
 ### @.isLastChild(nodeOrKey) ⇒ <code>boolean</code>
-<p>Checks if given node is the first child.</p>
+<p>Checks if given node is the last child.</p>
 
 **Kind**: instance method of [<code>Tree</code>](#Tree)  
 

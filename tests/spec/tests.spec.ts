@@ -116,6 +116,44 @@ function runTests <
       });
     });
 
+    describe('@isRoot(key: string).', () => {
+      it('Should return true if the node of given key is root.', () => {
+        expect(utils.isRoot('foo')).eq(true);
+        expect(utils.isRoot('xfoo')).eq(true);
+        expect(utils.isRoot('xfoo2')).eq(true);
+        expect(utils.isRoot('xfoo3')).eq(true);
+      });
+
+      it('Should return false if the node of given key is not root.', () => {
+        expect(utils.isRoot('bar')).equal(false);
+        expect(utils.isRoot('kar')).equal(false);
+        expect(utils.isRoot('xdar sar')).equal(false);
+      });
+
+      it('Should return false if the node of given key is not exists.', () => {
+        expect(utils.isRoot('not_exists_key')).equal(false);
+      });
+    });
+
+    describe('@isRoot(node: Node).', () => {
+      it('Should return true if the given node is root.', () => {
+        expect(utils.isRoot(data[0])).eq(true);
+        expect(utils.isRoot(data[1])).eq(true);
+        expect(utils.isRoot(data[2])).eq(true);
+        expect(utils.isRoot(data[3])).eq(true);
+      });
+
+      it('Should return false if the given node is not root.', () => {
+        expect(utils.isRoot(data[0][CHILDREN][0])).equal(false);
+        expect(utils.isRoot(data[0][CHILDREN][2][CHILDREN][0])).equal(false);
+        expect(utils.isRoot(data[1][CHILDREN][0])).equal(false);
+      });
+
+      it('Should return false if the given node is not exists.', () => {
+        expect(utils.isRoot('not_exists_key')).equal(false);
+      });
+    });
+
     describe('@isFirstChild(key: string).', () => {
       it('Should return true if the node of given key is first child.', () => {
         expect(utils.isFirstChild('foo')).eq(true);
@@ -135,21 +173,21 @@ function runTests <
     });
 
     describe('@isFirstChild(node: Node).', () => {
-      it('Should return true if the node of given key is first child.', () => {
+      it('Should return true if the given node is first child.', () => {
         expect(utils.isFirstChild(data[0])).eq(true);
         expect(utils.isFirstChild(data[0][CHILDREN][0])).eq(true);
         expect(utils.isFirstChild(data[0][CHILDREN][2][CHILDREN][0])).eq(true);
         expect(utils.isFirstChild(data[1][CHILDREN][0])).eq(true);
       });
 
-      it('Should return false if the node of given key is not first child.', () => {
+      it('Should return false if the given node is not first child.', () => {
         expect(utils.isFirstChild(data[1])).eq(false);
         expect(utils.isFirstChild(data[0][CHILDREN][1])).eq(false);
         expect(utils.isFirstChild(data[0][CHILDREN][2][CHILDREN][2])).eq(false);
         expect(utils.isFirstChild(data[1][CHILDREN][2])).eq(false);
       });
 
-      it('Should return false if the node of given key is not exists.', () => {
+      it('Should return false if the given node is not exists.', () => {
         expect(utils.isFirstChild(data[5])).equal(false);
       });
     });

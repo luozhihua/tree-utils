@@ -282,6 +282,28 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
   }
 
   /**
+   * Checks if given node is the root.
+   *
+   * @param {(TreeNode | string)} nodeOrKey
+   * @returns {boolean}
+   * @memberof Tree
+   */
+  isRoot(nodeOrKey: TreeNode<Props, KeyField, ChildrenField> | string): boolean {
+    const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey as string) : nodeOrKey;
+    if (node) {
+      let result = false;
+      this.walker((item, index, parent, level) => {
+        if (item[this.keyField] === node[this.keyField]) {
+          result = level === 0;
+          return true;
+        }
+      }, null, 'breadth', true);
+      return result;
+    }
+    return false;
+  }
+
+  /**
    * Checks if given node is the first child.
    *
    * @param {(TreeNode | string)} nodeOrKey

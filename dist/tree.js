@@ -61,6 +61,22 @@ class Tree {
         const children = node[this.childrenField];
         return !!children && children.length >= 0;
     }
+    isFirstChild(nodeOrKey) {
+        const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
+        if (node) {
+            const siblings = this.siblingsAndSelf(node);
+            return siblings[0][this.keyField] === node[this.keyField];
+        }
+        return false;
+    }
+    isLastChild(nodeOrKey) {
+        const node = typeof nodeOrKey === 'string' ? this.getNode(nodeOrKey) : nodeOrKey;
+        if (node) {
+            const siblings = this.siblingsAndSelf(node);
+            return siblings[siblings.length - 1][this.keyField] === node[this.keyField];
+        }
+        return false;
+    }
     getNode(key) {
         return this.cache[key] || null;
     }
