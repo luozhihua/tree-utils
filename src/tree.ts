@@ -114,6 +114,10 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
     });
   }
 
+  private clearCache() {
+    this.cache = {};
+  }
+
   /**
    * <hr/>
    * set tree nodes.
@@ -133,6 +137,8 @@ export default class Tree<Props = {[k: string]: any}, KeyField extends string = 
    */
   setData(nodes: TreeNode<Props, KeyField, ChildrenField>[]) {
     this.nodes = nodes;
+    this.clearCache();
+    this.buildCache();
   }
 
   /**

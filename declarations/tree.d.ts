@@ -8,6 +8,7 @@ export default class Tree<Props = {
     private cache;
     constructor(nodes?: TreeNode<Props, KeyField, ChildrenField>[], keyField?: KeyField, childrenField?: ChildrenField);
     private buildCache;
+    private clearCache;
     setData(nodes: TreeNode<Props, KeyField, ChildrenField>[]): void;
     toJSON(): TreeNode<Props, KeyField, ChildrenField>[];
     toString(indent?: number): string;

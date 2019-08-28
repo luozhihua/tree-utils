@@ -14,8 +14,13 @@ class Tree {
             this.cache[key] = node;
         });
     }
+    clearCache() {
+        this.cache = {};
+    }
     setData(nodes) {
         this.nodes = nodes;
+        this.clearCache();
+        this.buildCache();
     }
     toJSON() {
         return JSON.parse(JSON.stringify(this.nodes));
@@ -398,4 +403,3 @@ class Tree {
     }
 }
 exports.default = Tree;
-//# sourceMappingURL=tree.js.map

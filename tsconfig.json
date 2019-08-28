@@ -4,7 +4,7 @@
     "lib": [],
     "target": "esnext",
     "module": "commonjs",
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true,
     "pretty": true,
     "removeComments": true,
